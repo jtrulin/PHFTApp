@@ -42,13 +42,13 @@ class LoginPage : AppCompatActivity() {
         if(email.isEmpty() || email.indexOf('@') == -1 || email.indexOf('.', atPosition) == -1) {
 
             // run when email is invalid
-            Toast.makeText(this, "Cannot login! Try again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot login! Invalid Email", Toast.LENGTH_SHORT).show()
             return false
         }
 
         else if (password.isEmpty() || password.length < 6) {
             // run when password is invalid
-            Toast.makeText(this, "Cannot login! Try again", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot login! Invalid Password", Toast.LENGTH_SHORT).show()
             return false
         }
         else {
