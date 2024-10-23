@@ -18,13 +18,16 @@ class MainActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
-
-
         }
 
         val guestButton = findViewById<Button>(R.id.gButton)
         val loginButton = findViewById<Button>(R.id.lButton)
+        val registerButton = findViewById<Button>(R.id.rButton)
 
+        guestButton.setOnClickListener {
+            // run when button is clicked
+            Toast.makeText(this, "Guest button clicked!", Toast.LENGTH_SHORT).show()
+        }
 
         loginButton.setOnClickListener {
             // run when button is clicked
@@ -34,9 +37,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        guestButton.setOnClickListener {
+        registerButton.setOnClickListener {
             // run when button is clicked
-            Toast.makeText(this, "Guest button clicked!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Register button clicked!", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, RegisterPage::class.java)
+            startActivity(intent)
         }
 
 
