@@ -21,17 +21,25 @@ class LoginPage : AppCompatActivity() {
             insets
         }
 
+        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+
+
+        val submitButton = findViewById<Button>(R.id.sButton)
         val validEmail = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val validPassword = findViewById<EditText>(R.id.editTextTextPassword)
-        val submitButton = findViewById<Button>(R.id.sButton)
 
         submitButton.setOnClickListener {
             if(validateCredentials(validEmail,validPassword)){
                 // run when login is successful
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, MainMenu::class.java)
+                startActivity(intent)
             }
         }
     }
+
+
 
 
     private fun validateCredentials(validEmail: EditText, validPassword: EditText): Boolean { // validEmail and validPassword are of type "EditText"
@@ -42,13 +50,13 @@ class LoginPage : AppCompatActivity() {
         if(email.isEmpty() || email.indexOf('@') == -1 || email.indexOf('.', atPosition) == -1) {
 
             // run when email is invalid
-            Toast.makeText(this, "Cannot login! Invalid Email", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot login! Invalid email", Toast.LENGTH_SHORT).show()
             return false
         }
 
         else if (password.isEmpty() || password.length < 6) {
             // run when password is invalid
-            Toast.makeText(this, "Cannot login! Invalid Password", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot login! Invalid password", Toast.LENGTH_SHORT).show()
             return false
         }
         else {

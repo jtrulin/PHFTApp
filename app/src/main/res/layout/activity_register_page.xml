@@ -11,13 +11,16 @@
         android:id="@+id/regEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="268dp"
+        android:layout_marginTop="32dp"
         android:ems="10"
         android:hint="Register Email"
         android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColorHint="#A1887F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/enterPhoneNum"
+        tools:ignore="Autofill,HardcodedText" />
 
     <EditText
         android:id="@+id/regPassword"
@@ -25,20 +28,99 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Enter New Password"
+        android:hint="Password (6 or more characters)"
         android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="#A1887F"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/regEmail"
+        tools:ignore="Autofill,HardcodedText" />
 
     <Button
         android:id="@+id/rButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Button"
+        android:layout_marginTop="80dp"
+        android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/regPassword"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/enterPhoneNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Phone Number"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:textColorHint="#A1887F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterHeight"
+        tools:ignore="Autofill,HardcodedText" />
+
+    <EditText
+        android:id="@+id/enterHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Height (Ex: 5'7 -> 5.7)"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#A1887F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterWeight"
+        tools:ignore="Autofill,HardcodedText" />
+
+    <EditText
+        android:id="@+id/enterWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Weight (Ex: 120.5)"
+        android:inputType="numberDecimal"
+        android:minHeight="48dp"
+        android:textColorHint="#A1887F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterAge"
+        tools:ignore="Autofill,HardcodedText" />
+
+    <EditText
+        android:id="@+id/enterAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Age"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textColorHint="#A1887F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterName"
+        tools:ignore="Autofill,HardcodedText" />
+
+    <EditText
+        android:id="@+id/enterName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#A1887F"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="Autofill,HardcodedText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
