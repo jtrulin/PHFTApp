@@ -21,21 +21,20 @@ class LoginPage : AppCompatActivity() {
             insets
         }
 
-        //supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-
-
         val submitButton = findViewById<Button>(R.id.sButton)
         val validEmail = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val validPassword = findViewById<EditText>(R.id.editTextTextPassword)
 
         submitButton.setOnClickListener {
-            if(validateCredentials(validEmail,validPassword)){
+            //if(validateCredentials(validEmail,validPassword)){
                 // run when login is successful
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MainMenu::class.java)
-                startActivity(intent)
-            }
+                val isGuest = intent.getBooleanExtra("isGuest", false) // sets a flag to show a user is a guest
+
+            startActivity(intent)
+           // }
         }
     }
 

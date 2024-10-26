@@ -2,8 +2,12 @@ package com.example.phftapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,14 +28,40 @@ class RegisterPage : AppCompatActivity() {
         // retrieving user input
         val userName = findViewById<EditText>(R.id.enterName)
         val userAge = findViewById<EditText>(R.id.enterAge)
+        val userID = findViewById<EditText>(R.id.enterUseId)
         val userWeight = findViewById<EditText>(R.id.enterWeight)
         val userHeight = findViewById<EditText>(R.id.enterHeight)
         val userEmail = findViewById<EditText>(R.id.regEmail)
         val userPassword = findViewById<EditText>(R.id.regPassword)
+        val securityAnswer = findViewById<EditText>(R.id.enterAnswer)
         val registerButton = findViewById<Button>(R.id.rButton)
 
+        // setting up security questions with the spinner
+        val securityQuestionsSpinner= findViewById<Spinner>(R.id.spinner)
+        val listQuestions = listOf("Select Security Question", "In what city were you born?", "First Pet Name?")
+        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listQuestions)
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        securityQuestionsSpinner.adapter = arrayAdapter
+
+        securityQuestionsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                val selectedQuestion = parent.getItemAtPosition(position).toString()
+                Toast.makeText(this@RegisterPage, "You selected '$selectedQuestion'", Toast.LENGTH_SHORT).show()
+
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
         registerButton.setOnClickListener {
-            if (validateCredentials(userEmail, userPassword)) {
+            if (validateCredentials(userEmail, userPassword, userID)) {
                 // run when login is successful
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
@@ -43,8 +73,9 @@ class RegisterPage : AppCompatActivity() {
                 val weight = userWeight.text.toString().toFloat()
                 val height = userHeight.text.toString().toFloat()
 
-                val user = User(name, age, weight, height)
+                val user = User(name, age, weight, height) // checking if class is working (it does)
 
+                // debugging
                 Toast.makeText(this, "User Created: $user", Toast.LENGTH_SHORT).show()
 
 
@@ -60,23 +91,44 @@ class RegisterPage : AppCompatActivity() {
         }
     }
 
-    private fun validateCredentials(userEmail: EditText, userPassword: EditText): Boolean { // validEmail and validPassword are of type "EditText"
+    private fun validateCredentials(userEmail: EditText, userPassword: EditText, userID: EditText): Boolean { // validEmail and validPassword are of type "EditText"
+
+        // turning arguments into strings
         val email = userEmail.text.toString()
         val password = userPassword.text.toString()
-        val atPosition =
-            email.indexOf('@') // helps finding the '.' AFTER '@'. if returned true then gives position, if not it returns -1
+        val id = userID.text.toString()
 
-        if (email.isEmpty() || email.indexOf('@') == -1 || email.indexOf('.', atPosition) == -1) {
+        val atPosition = email.indexOf('@') // helps finding the '.' AFTER '@'. if returned true then gives position, if not it returns -1
+
+        if (email.isEmpty() || email.indexOf('@') == -1 || email.indexOf('.', atPosition) == -1) { // checks if email is valid
             // run when email is invalid
             Toast.makeText(this, "Cannot login! Invalid email", Toast.LENGTH_SHORT).show()
             return false
-        } else if (password.isEmpty() || password.length < 6) {
+        } else if (password.isEmpty() || password.length <= 7) { // checking password length
             // run when password is invalid
-            Toast.makeText(this, "Cannot login! Invalid password", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot login! At least 8 characters long!", Toast.LENGTH_SHORT).show()
             return false
-        } else {
+        } else if (!password.contains("[0-9]".toRegex())) { // checking if password contains at least 1 number, using regular expression
+            // run when password is invalid
+            Toast.makeText(this, "Cannot login! At least 1 number!", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (!password.contains("[!\"#$%&'()*+,-./:;<=>?@^_`{|}~]".toRegex())) { // checking if password contains at least 1 special character, using regular expression
+            // run when password is invalid
+            Toast.makeText(this, "Cannot login! At least 1 special character!", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (id.length <= 5) { // checks user length, must be 6 or more characters
+            // run when password is invalid
+            Toast.makeText(this, "Cannot login! UserID must be at least 6 characters!", Toast.LENGTH_SHORT).show()
+            return false
+        } else if (id.contains("[!\"#$%&'()*+,-./:;<=>?@^_`{|}~]".toRegex())) { // checks if userID has special characters, which is not allowed
+            // run when password is invalid
+            Toast.makeText(this, "Cannot login! UserID must be not have special characters!", Toast.LENGTH_SHORT).show()
+            return false
+        }
+        else {
             return true // returns true only if conditions are met
         }
+
     }
 
 

@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         guestButton.setOnClickListener {
             // run when button is clicked
             Toast.makeText(this, "Guest button clicked!", Toast.LENGTH_SHORT).show()
+
+            val intent = Intent(this, MainMenu::class.java)
+            intent.putExtra("isGuest", true) // sets a flag to show a user is a guest
+            startActivity(intent)
         }
 
         loginButton.setOnClickListener {
@@ -34,6 +38,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Login button clicked!", Toast.LENGTH_SHORT).show()
 
             val intent = Intent(this, LoginPage::class.java)
+            //intent.putExtra("isGuest", false)
+
             startActivity(intent)
         }
 

@@ -20,6 +20,18 @@ class MainMenu : AppCompatActivity() {
             insets
         }
 
+        // knows if user is logged in or if it's a guest, use later to limit functionalities
+
+        val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
+                                                                                // (passed in LoginPage.kt for logged in user and MainMenu.kt for guest
+
+        if (isGuest) {
+            Toast.makeText(this, "Welcome, Guest! Limited features available.", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
+        }
+
+
         Toast.makeText(this, "in the main menu!!", Toast.LENGTH_SHORT).show()
 
         val activityButton = findViewById<Button>(R.id.wrkButton)
