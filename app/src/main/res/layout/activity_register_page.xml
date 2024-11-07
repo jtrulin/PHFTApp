@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/darkGray"
     tools:context=".RegisterPage">
 
     <ScrollView
@@ -22,20 +23,24 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:ignore="ExtraText">><EditText
-                android:id="@+id/regEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:ems="10"
-                android:hint="Register Email"
-                android:inputType="textEmailAddress"
-                android:minHeight="48dp"
-                android:textColorHint="#A1887F"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/enterHeight"
-                tools:ignore="Autofill,HardcodedText" />
+                tools:ignore="ExtraText">
+
+                <EditText
+                    android:id="@+id/regEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:ems="10"
+                    android:hint="Register Email"
+                    android:inputType="textEmailAddress"
+                    android:minHeight="48dp"
+                    android:textColorHint="@color/white"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/cyan"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enterHeight"
+                    tools:ignore="Autofill,HardcodedText" />
 
                 <EditText
                     android:id="@+id/regPassword"
@@ -46,7 +51,9 @@
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:minHeight="48dp"
-                    android:textColorHint="#A1887F"
+                    android:textColorHint="@color/white"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@color/cyan"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
@@ -59,6 +66,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="35dp"
                     android:text="Register"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/enterAnswer"
@@ -73,7 +82,9 @@
                     android:hint="UserId"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:textColorHint="#A1887F"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +100,9 @@
                     android:hint="Height (Ex: 5'7 -> 5.7)"
                     android:inputType="numberDecimal"
                     android:minHeight="48dp"
-                    android:textColorHint="#A1887F"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/enterWeight"
@@ -104,7 +117,9 @@
                     android:hint="Weight (Ex: 120.5)"
                     android:inputType="numberDecimal"
                     android:minHeight="48dp"
-                    android:textColorHint="#A1887F"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.502"
                     app:layout_constraintStart_toStartOf="parent"
@@ -120,7 +135,9 @@
                     android:hint="Age"
                     android:inputType="number"
                     android:minHeight="48dp"
-                    android:textColorHint="#A1887F"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/enterName"
@@ -135,7 +152,9 @@
                     android:hint="Name"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:textColorHint="#A1887F"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -143,13 +162,17 @@
 
                 <Spinner
                     android:id="@+id/spinner"
-                    android:layout_width="391dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:minHeight="48dp"
+                    android:theme="@style/CustomSpinner"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/regPassword" />
+
+
+
 
                 <EditText
                     android:id="@+id/enterAnswer"
@@ -160,11 +183,14 @@
                     android:hint="Security Question Answer"
                     android:inputType="text"
                     android:minHeight="48dp"
-                    android:textColorHint="#A1887F"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/regPassword"
                     tools:ignore="Autofill,HardcodedText" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

@@ -3,11 +3,13 @@ package com.example.phftapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,7 @@ class RegisterPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_register_page)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -37,11 +40,51 @@ class RegisterPage : AppCompatActivity() {
         val registerButton = findViewById<Button>(R.id.rButton)
 
         // setting up security questions with the spinner
-        val securityQuestionsSpinner= findViewById<Spinner>(R.id.spinner)
-        val listQuestions = listOf("Select Security Question", "In what city were you born?", "First Pet Name?")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, listQuestions)
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
+        // setting up security questions with the spinner
+        // setting up security questions with the spinner
+        val securityQuestionsSpinner = findViewById<Spinner>(R.id.spinner)
+        val listQuestions = listOf(
+            "Select Security Question",
+            "What is your mother's maiden name?",
+            "What was the name of your first pet?",
+            "In what city were you born?",
+            "What was your first car?",
+            "What is your favorite book?"
+        )
+
+        // Custom ArrayAdapter to set main Spinner text to white and drop-down items to black
+        val arrayAdapter = object : ArrayAdapter<String>(this, R.layout.spinner_item, listQuestions) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent)
+
+                // Set color for the main view of the Spinner (shown when closed) to white
+                (view as? TextView)?.setTextColor(resources.getColor(R.color.white, null))
+
+                return view
+            }
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent)
+
+                // Set color for drop-down items to black
+                (view as? TextView)?.setTextColor(resources.getColor(R.color.black, null))
+
+                return view
+            }
+        }
+
+// Apply the custom adapter to the Spinner
         securityQuestionsSpinner.adapter = arrayAdapter
+
+
+// Apply the adapter to the Spinner
+        securityQuestionsSpinner.adapter = arrayAdapter
+
+
+// Apply the adapter to the Spinner
+        securityQuestionsSpinner.adapter = arrayAdapter
+
+
 
         securityQuestionsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -51,14 +94,18 @@ class RegisterPage : AppCompatActivity() {
                 id: Long
             ) {
                 val selectedQuestion = parent.getItemAtPosition(position).toString()
-                Toast.makeText(this@RegisterPage, "You selected '$selectedQuestion'", Toast.LENGTH_SHORT).show()
 
+                // Ignore if the default item is selected
+                if (selectedQuestion != "Select Security Question") {
+                    Toast.makeText(this@RegisterPage, "You selected '$selectedQuestion'", Toast.LENGTH_SHORT).show()
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
+                // No action needed here
             }
         }
+
 
         registerButton.setOnClickListener {
             if (validateCredentials(userEmail, userPassword, userID)) {
@@ -78,15 +125,12 @@ class RegisterPage : AppCompatActivity() {
                 // debugging
                 Toast.makeText(this, "User Created: $user", Toast.LENGTH_SHORT).show()
 
-
                 // later, store email and password to a database, so when user logs in, their credentials should be searched in the database
-                //val storeEmail = validEmail.text.toString()
-                //writeToFile("emails.txt", storeEmail)
-
+                // val storeEmail = validEmail.text.toString()
+                // writeToFile("emails.txt", storeEmail)
 
                 val intent = Intent(this, MainMenu::class.java)
                 startActivity(intent)
-
             }
         }
     }
@@ -124,13 +168,10 @@ class RegisterPage : AppCompatActivity() {
             // run when password is invalid
             Toast.makeText(this, "Cannot login! UserID must be not have special characters!", Toast.LENGTH_SHORT).show()
             return false
-        }
-        else {
+        } else {
             return true // returns true only if conditions are met
         }
-
     }
-
 
     // this should store stuff into a database
     /*private fun writeToFile(fileName: String, content: String) {
@@ -144,4 +185,3 @@ class RegisterPage : AppCompatActivity() {
     }
     */
 }
-

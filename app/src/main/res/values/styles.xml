@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="SpinnerTextWhite" parent="Widget.AppCompat.Spinner">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner.Underlined">
+        <item name="android:backgroundTint">@android:color/white</item> <!-- White arrow and underline -->
+        <item name="android:textColor">@android:color/white</item> <!-- White text in closed Spinner -->
+        <item name="android:popupBackground">@color/darkGray</item> <!-- Dark background for dropdown list -->
+    </style>
+</resources>

@@ -6,6 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/darkGray"
+    android:textColor="@android:color/white"
     tools:context=".ChooseActivity">
 
     <ScrollView
@@ -30,6 +32,7 @@
                     android:scaleX="2"
                     android:scaleY="2"
                     android:text="Choose Activity"
+                    android:textColor="@android:color/white"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -41,6 +44,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:text="Running"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView5"
@@ -52,6 +57,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:text="Walking"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/runningButton"
@@ -63,6 +70,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:text="Cycling"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/walkingButton"
@@ -74,6 +83,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:text="HIIT"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cyclingButton"
@@ -85,6 +96,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:text="WeightLifting"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/hiitButton"
@@ -96,12 +109,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
                     android:text="Swimming"
+                    android:backgroundTint="@color/cyan"
+                    android:textColor="@color/black"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/weightliftButton"
                     tools:ignore="HardcodedText" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
