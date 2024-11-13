@@ -41,6 +41,13 @@ class MainMenu : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val trainerButton = findViewById<Button>(R.id.reqButton)
+
+        trainerButton.setOnClickListener(){
+            val intent = Intent(this, Trainer::class.java)
+            startActivity(intent)
+        }
+
 
 
 
