@@ -51,5 +51,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trainer_name" />
 
+    <TextView
+        android:id="@+id/overall_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="8dp"
+        android:text="Overall Rating: 0.0"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar1"
+        tools:ignore="HardcodedText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
