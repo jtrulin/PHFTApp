@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputBinding
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -17,10 +18,17 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class RegisterPage : AppCompatActivity() {
+
+   // private lateinit var binding: Activity
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //binding = ActivityRegisterBinding.inflate
         enableEdgeToEdge()
         setContentView(R.layout.activity_register_page)
+
+        databaseHelper = DatabaseHelper(this)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -36,7 +44,7 @@ class RegisterPage : AppCompatActivity() {
         val userHeight = findViewById<EditText>(R.id.enterHeight)
         val userEmail = findViewById<EditText>(R.id.regEmail)
         val userPassword = findViewById<EditText>(R.id.regPassword)
-        val securityAnswer = findViewById<EditText>(R.id.enterAnswer)
+        val userSecurityAnswer = findViewById<EditText>(R.id.enterAnswer)
         val registerButton = findViewById<Button>(R.id.rButton)
 
         // setting up security questions with the spinner
@@ -107,30 +115,40 @@ class RegisterPage : AppCompatActivity() {
         }
 
 
+
         registerButton.setOnClickListener {
             if (validateCredentials(userEmail, userPassword, userID)) {
                 // run when login is successful
-                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
                 // creating a User instance per registered user and saves to database.
                 // when users log in regularly, we should search through database to confirm they're
                 // in our system
                 val name = userName.text.toString()
+
                 val age = userAge.text.toString().toInt()
+                val id = userID.text.toString().toInt()
                 val weight = userWeight.text.toString().toFloat()
                 val height = userHeight.text.toString().toFloat()
+                val email = userEmail.text.toString()
+                val password = userPassword.text.toString()
+                val securityAnswer = userSecurityAnswer.text.toString()
 
-                val user = User(name, age, weight, height) // checking if class is working (it does)
+                //val user = User(name, age, id, email) // checking if class is working (it does)
 
-                // debugging
-                Toast.makeText(this, "User Created: $user", Toast.LENGTH_SHORT).show()
 
-                // later, store email and password to a database, so when user logs in, their credentials should be searched in the database
-                // val storeEmail = validEmail.text.toString()
-                // writeToFile("emails.txt", storeEmail)
+                val insertedId = databaseHelper.insertUser(User(name, age, id, weight, height, email, password, securityAnswer))
 
-                val intent = Intent(this, MainMenu::class.java)
-                startActivity(intent)
+                if (insertedId == -1L) {
+                    //Toast.makeText(this, "Registration failed!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Registration failed! Error: $insertedId", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, LoginPage::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                //val intent = Intent(this, RegisterPage::class.java)
             }
         }
     }
