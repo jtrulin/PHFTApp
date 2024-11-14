@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Background image by Анастасия from Pexels: https://www.pexels.com/photo/person-in-the-dark-standing-near-the-glass-wall-10012446/ -->
+
+<bitmap xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/background"
+    android:tileMode="disabled" />
+

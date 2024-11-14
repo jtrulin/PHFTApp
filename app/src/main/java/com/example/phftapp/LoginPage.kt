@@ -11,33 +11,53 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class LoginPage : AppCompatActivity() {
+
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_login_page)
+
+        databaseHelper = DatabaseHelper(this)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        val submitButton = findViewById<Button>(R.id.sButton)
         val validEmail = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val validPassword = findViewById<EditText>(R.id.editTextTextPassword)
+        val submitButton = findViewById<Button>(R.id.sButton)
 
         submitButton.setOnClickListener {
-            //if(validateCredentials(validEmail,validPassword)){
+            if(validateCredentials(validEmail,validPassword)) {
+
+                val email = validEmail.text.toString()
+                val password = validPassword.text.toString()
+
+                val userExits = databaseHelper.readUser(email, password)
+                if (userExits) {
+                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainMenu::class.java)
+                    startActivity(intent)
+                    //finish()
+                } else {
+                    Toast.makeText(this, "User Not Found!", Toast.LENGTH_SHORT).show()
+                }
+
                 // run when login is successful
-                Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "hey successful!", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MainMenu::class.java)
-                val isGuest = intent.getBooleanExtra("isGuest", false) // sets a flag to show a user is a guest
-
-            startActivity(intent)
-           // }
+                val isGuest = intent.getBooleanExtra(
+                    "isGuest",
+                    false
+                ) // sets a flag to show a user is a guest
+            }
         }
     }
-
 
 
 

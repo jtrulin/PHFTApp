@@ -5,8 +5,20 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkGray"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/background"
+        android:contentDescription="background image" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B3000000" />
 
     <Button
         android:id="@+id/gButton"
@@ -15,8 +27,11 @@
         android:layout_marginTop="268dp"
         android:layout_marginBottom="415dp"
         android:text="Guest"
-        android:backgroundTint="@color/cyan"
         android:textColor="@color/black"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/cyan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -29,8 +44,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Login"
-        android:backgroundTint="@color/cyan"
         android:textColor="@color/black"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/cyan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gButton" />
@@ -41,10 +59,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Register"
-        android:backgroundTint="@color/cyan"
         android:textColor="@color/black"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        android:backgroundTint="@color/cyan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
