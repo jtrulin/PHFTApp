@@ -19,7 +19,6 @@ import androidx.core.view.WindowInsetsCompat
 
 class RegisterPage : AppCompatActivity() {
 
-   // private lateinit var binding: Activity
     private lateinit var databaseHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -84,15 +83,11 @@ class RegisterPage : AppCompatActivity() {
 // Apply the custom adapter to the Spinner
         securityQuestionsSpinner.adapter = arrayAdapter
 
-
 // Apply the adapter to the Spinner
         securityQuestionsSpinner.adapter = arrayAdapter
 
-
 // Apply the adapter to the Spinner
         securityQuestionsSpinner.adapter = arrayAdapter
-
-
 
         securityQuestionsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -114,18 +109,13 @@ class RegisterPage : AppCompatActivity() {
             }
         }
 
-
-
         registerButton.setOnClickListener {
             if (validateCredentials(userEmail, userPassword, userID)) {
-                // run when login is successful
-                //Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
                 // creating a User instance per registered user and saves to database.
                 // when users log in regularly, we should search through database to confirm they're
                 // in our system
                 val name = userName.text.toString()
-
                 val age = userAge.text.toString().toInt()
                 val id = userID.text.toString().toInt()
                 val weight = userWeight.text.toString().toFloat()
@@ -135,20 +125,17 @@ class RegisterPage : AppCompatActivity() {
                 val securityAnswer = userSecurityAnswer.text.toString()
 
                 //val user = User(name, age, id, email) // checking if class is working (it does)
-
-
                 val insertedId = databaseHelper.insertUser(User(name, age, id, weight, height, email, password, securityAnswer))
 
                 if (insertedId == -1L) {
                     //Toast.makeText(this, "Registration failed!", Toast.LENGTH_SHORT).show()
-                    Toast.makeText(this, "Registration failed! Error: $insertedId", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Registration failed!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, LoginPage::class.java)
                     startActivity(intent)
                     finish()
                 }
-                //val intent = Intent(this, RegisterPage::class.java)
             }
         }
     }
