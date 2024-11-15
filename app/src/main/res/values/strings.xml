@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">PHFTApp</string>
+    <string name="app_name">DroidFit</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="submit">Submit</string>
+    <string name="trainer">John Snow</string>
+    <string name="background_image">background image</string>
+    <string name="guest">Guest</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="workout_button">Workout button</string>
+    <string name="heartbeat_icon" />
 </resources>

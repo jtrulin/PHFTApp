@@ -1,12 +1,16 @@
 package com.example.phftapp
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 
 class ChooseActivity : AppCompatActivity() {
     @SuppressLint("RestrictedApi")
@@ -19,6 +23,25 @@ class ChooseActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val heartbeatIcon = findViewById<ImageView>(R.id.heartbeatIcon)
+        val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse)
+        heartbeatIcon.startAnimation(pulseAnimation)
+
+        val runButton = findViewById<Button>(R.id.runningButton)
+
+        runButton.setOnClickListener{
+            val intent = Intent(this, RunningActivity::class.java)
+            val actCon = ActivityContents(activityType = "Running")
+            Toast.makeText(
+                this,
+                "Run Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                Toast.LENGTH_SHORT
+            ).show()
+            startActivity(intent)
+        }
+
+
 
 
     }
