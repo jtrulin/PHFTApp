@@ -9,6 +9,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 
 class ChooseActivity : AppCompatActivity() {
     @SuppressLint("RestrictedApi")
@@ -21,6 +23,10 @@ class ChooseActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val heartbeatIcon = findViewById<ImageView>(R.id.heartbeatIcon)
+        val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse)
+        heartbeatIcon.startAnimation(pulseAnimation)
 
         val runButton = findViewById<Button>(R.id.runningButton)
 
