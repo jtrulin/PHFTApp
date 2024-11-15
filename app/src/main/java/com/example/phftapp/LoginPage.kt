@@ -26,7 +26,7 @@ class LoginPage : AppCompatActivity() {
         val validPassword = findViewById<EditText>(R.id.editTextTextPassword)
 
         submitButton.setOnClickListener {
-            //if(validateCredentials(validEmail,validPassword)){
+            if(validateCredentials(validEmail,validPassword)){
                 // run when login is successful
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
@@ -34,7 +34,7 @@ class LoginPage : AppCompatActivity() {
                 val isGuest = intent.getBooleanExtra("isGuest", false) // sets a flag to show a user is a guest
 
             startActivity(intent)
-           // }
+            }
         }
     }
 
