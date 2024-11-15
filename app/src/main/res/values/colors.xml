@@ -6,4 +6,7 @@
     <color name ="cyan">#0BFFFF</color>
     <color name = "green">#006400</color>
     <color name = "red">#8B0000</color>
+    <color name="star_filled">#FFD700</color>
+    <color name="star_outline">#FFFFFF</color>
+
 </resources>

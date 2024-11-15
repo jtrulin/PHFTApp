@@ -5,6 +5,7 @@
     android:id="@+id/TrainerID"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#A9A9A9"
     tools:context=".Trainer">
 
     <TextView
@@ -18,7 +19,6 @@
         android:fontFamily="sans-serif-medium"
         android:paddingBottom="16dp"
         android:text="John Snow"
-        android:textColor="#000000"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -47,6 +47,8 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
+        android:progressTint="#FFD700"
+        android:progressBackgroundTint="#D3D3D3"
         app:layout_constraintBottom_toTopOf="@+id/message_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/trainer_name" />
@@ -61,7 +63,6 @@
         android:layout_marginTop="4dp"
         android:paddingTop="0dp"
         android:text="Overall Rating: 0.0"
-        android:textColor="#000000"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ratingBar1"
