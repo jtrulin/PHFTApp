@@ -16,6 +16,9 @@
             android:name=".Messagetrainer"
             android:exported="false" />
         <activity
+            android:name=".MessageTrainer"
+            android:exported="false" />
+        <activity
             android:name=".Trainer"
             android:exported="false" />
         <activity

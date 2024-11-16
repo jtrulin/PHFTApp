@@ -49,7 +49,5 @@ class MainMenu : AppCompatActivity() {
         }
 
 
-
-
     }
 }
