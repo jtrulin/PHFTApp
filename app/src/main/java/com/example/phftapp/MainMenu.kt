@@ -49,7 +49,12 @@ class MainMenu : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val paymentValidationButton = findViewById<Button>(R.id.paymentValidationButton)
 
+        paymentValidationButton.setOnClickListener(){
+            val intent = Intent(this, PaymentValidation::class.java)
+            startActivity(intent)
+        }
 
 
     }
