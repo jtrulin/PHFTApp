@@ -28,6 +28,12 @@
             android:name=".ActivityContents"
             android:exported="false" />
         <activity
+            android:name=".PaymentSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentValidation"
+            android:exported="false" />
+        <activity
             android:name=".GuestPage"
             android:exported="false" />
         <activity
