@@ -5,58 +5,43 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/darkGray"
-    android:textColor="@color/black"
     tools:context=".MainMenu">
 
-    <Button
+    <ImageButton
         android:id="@+id/wrkButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="WorkOut"
-        android:backgroundTint="@color/cyan"
-        android:textColor="@color/black"
-        android:fontFamily="@font/teko"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        app:srcCompat="@drawable/workoutbutton"
+        android:scaleType="fitXY"
+        android:background="@null"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/socButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Social"
-        android:backgroundTint="@color/cyan"
-        android:textColor="@color/black"
-        android:fontFamily="@font/teko"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="75dp"
+        app:srcCompat="@drawable/socialbutton"
+        android:scaleType="fitXY"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/wrkButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wrkButton"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/reqButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Request a Trainer"
-        android:backgroundTint="@color/cyan"
-        android:textColor="@color/black"
-        android:fontFamily="@font/teko"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="250dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="75dp"
+        app:srcCompat="@drawable/trainerbutton"
+        android:scaleType="fitXY"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/socButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/socButton"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

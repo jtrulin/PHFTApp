@@ -3,6 +3,7 @@ package com.example.phftapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -34,14 +35,14 @@ class MainMenu : AppCompatActivity() {
 
         Toast.makeText(this, "in the main menu!!", Toast.LENGTH_SHORT).show()
 
-        val activityButton = findViewById<Button>(R.id.wrkButton)
+        val activityButton = findViewById<ImageButton>(R.id.wrkButton)
 
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
             startActivity(intent)
         }
 
-        val trainerButton = findViewById<Button>(R.id.reqButton)
+        val trainerButton = findViewById<ImageButton>(R.id.reqButton)
 
         trainerButton.setOnClickListener(){
             val intent = Intent(this, Trainer::class.java)

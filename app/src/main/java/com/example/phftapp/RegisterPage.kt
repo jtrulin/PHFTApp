@@ -65,7 +65,10 @@ class RegisterPage : AppCompatActivity() {
                 val view = super.getView(position, convertView, parent)
 
                 // Set color for the main view of the Spinner (shown when closed) to white
-                (view as? TextView)?.setTextColor(resources.getColor(R.color.white, null))
+                (view as? TextView)?.apply {
+                    setTextColor(resources.getColor(R.color.white, null))
+                    textSize = 16f // Optional: Adjust text size
+                }
 
                 return view
             }
@@ -74,21 +77,19 @@ class RegisterPage : AppCompatActivity() {
                 val view = super.getDropDownView(position, convertView, parent)
 
                 // Set color for drop-down items to black
-                (view as? TextView)?.setTextColor(resources.getColor(R.color.black, null))
+                (view as? TextView)?.apply {
+                    setTextColor(resources.getColor(R.color.black, null))
+                    textSize = 16f // Optional: Adjust text size
+                }
 
                 return view
             }
         }
 
-// Apply the custom adapter to the Spinner
+        // Apply the custom adapter to the Spinner
         securityQuestionsSpinner.adapter = arrayAdapter
 
-// Apply the adapter to the Spinner
-        securityQuestionsSpinner.adapter = arrayAdapter
-
-// Apply the adapter to the Spinner
-        securityQuestionsSpinner.adapter = arrayAdapter
-
+        // Handle item selection for the Spinner
         securityQuestionsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -171,14 +172,16 @@ class RegisterPage : AppCompatActivity() {
             return false
         } else if (id.contains("[!\"#$%&'()*+,-./:;<=>?@^_`{|}~]".toRegex())) { // checks if userID has special characters, which is not allowed
             // run when password is invalid
-            Toast.makeText(this, "Cannot login! UserID must be not have special characters!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Cannot login! UserID must not have special characters!", Toast.LENGTH_SHORT).show()
             return false
         } else {
             return true // returns true only if conditions are met
         }
     }
 
-    // this should store stuff into a database
+
+
+// this should store stuff into a database
     /*private fun writeToFile(fileName: String, content: String) {
         val path = applicationContext.filesDir
         val file = File(path, fileName)
