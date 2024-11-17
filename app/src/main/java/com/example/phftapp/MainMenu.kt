@@ -21,6 +21,11 @@ class MainMenu : AppCompatActivity() {
             insets
         }
 
+        // Buttons
+        val activityButton = findViewById<ImageButton>(R.id.wrkButton)
+        val socialButton = findViewById<ImageButton>(R.id.socButton)
+        val trainerButton = findViewById<ImageButton>(R.id.reqButton)
+
         // knows if user is logged in or if it's a guest, use later to limit functionalities
 
         val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
@@ -32,21 +37,30 @@ class MainMenu : AppCompatActivity() {
             Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
         }
 
-
-        Toast.makeText(this, "in the main menu!!", Toast.LENGTH_SHORT).show()
-
-        val activityButton = findViewById<ImageButton>(R.id.wrkButton)
-
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
+            if(isGuest){
+                intent.putExtra("isGuest", true)
+            }
             startActivity(intent)
         }
 
-        val trainerButton = findViewById<ImageButton>(R.id.reqButton)
+        socialButton.setOnClickListener(){
+           if(isGuest){
+               Toast.makeText(this, "Guests don't have access! Please Register", Toast.LENGTH_SHORT).show()
+           }
+        }
+
 
         trainerButton.setOnClickListener(){
-            val intent = Intent(this, Trainer::class.java)
-            startActivity(intent)
+            if(isGuest){
+                Toast.makeText(this, "Guests don't have access! Please Register", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val intent = Intent(this, Trainer::class.java)
+                startActivity(intent)
+
+            }
         }
 
         val paymentValidationButton = findViewById<Button>(R.id.paymentValidationButton)

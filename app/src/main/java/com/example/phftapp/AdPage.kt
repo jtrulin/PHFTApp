@@ -16,7 +16,6 @@ import com.google.android.gms.ads.MobileAds
 
 class AdPage : AppCompatActivity() {
     lateinit var myAd : AdView
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

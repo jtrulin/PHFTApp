@@ -25,9 +25,6 @@ class MainActivity : AppCompatActivity() {
         val registerButton = findViewById<Button>(R.id.rButton)
 
         guestButton.setOnClickListener {
-            // run when button is clicked
-            Toast.makeText(this, "Guest button clicked!", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(this, MainMenu::class.java)
             intent.putExtra("isGuest", true) // sets a flag to show a user is a guest
             startActivity(intent)
@@ -44,9 +41,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         registerButton.setOnClickListener {
-            // run when button is clicked
-            Toast.makeText(this, "Register button clicked!", Toast.LENGTH_SHORT).show()
-
             val intent = Intent(this, RegisterPage::class.java)
             startActivity(intent)
         }

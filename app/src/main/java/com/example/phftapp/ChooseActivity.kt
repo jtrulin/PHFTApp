@@ -13,7 +13,6 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 
 class ChooseActivity : AppCompatActivity() {
-    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
