@@ -24,6 +24,9 @@
             android:name=".Messagetrainer"
             android:exported="false" />
         <activity
+            android:name=".MessageTrainer"
+            android:exported="false" />
+        <activity
             android:name=".Trainer"
             android:exported="false" />
         <activity
@@ -31,6 +34,12 @@
             android:exported="false" />
         <activity
             android:name=".ActivityContents"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".PaymentValidation"
             android:exported="false" />
         <activity
             android:name=".GuestPage"
