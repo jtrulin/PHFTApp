@@ -10,9 +10,9 @@
 
     <ImageButton
         android:id="@+id/wrkButton"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="80dp"
         app:srcCompat="@drawable/workoutbutton"
         android:scaleType="fitXY"
         android:background="@null"
@@ -22,9 +22,9 @@
 
     <ImageButton
         android:id="@+id/socButton"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="75dp"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="60dp"
         app:srcCompat="@drawable/socialbutton"
         android:scaleType="fitXY"
         android:background="@null"
@@ -34,9 +34,9 @@
 
     <ImageButton
         android:id="@+id/reqButton"
-        android:layout_width="250dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="75dp"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="60dp"
         app:srcCompat="@drawable/trainerbutton"
         android:scaleType="fitXY"
         android:background="@null"
@@ -44,18 +44,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/paymentValidationButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="192dp"
-        android:text="Become A Member"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="60dp"
+        app:srcCompat="@drawable/memberbutton"
+        android:scaleType="fitXY"
+        android:background="@null"
+        app:layout_constraintTop_toBottomOf="@id/reqButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reqButton"
-        tools:ignore="HardcodedText"/>
+        app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
