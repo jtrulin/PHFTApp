@@ -28,17 +28,28 @@ class ChooseActivity : AppCompatActivity() {
         val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse)
         heartbeatIcon.startAnimation(pulseAnimation)
 
+        val isGuest = intent.getBooleanExtra("isGuest", false)
+        val activityType = "running" // default activity is running
+
         val runButton = findViewById<Button>(R.id.runningButton)
 
         runButton.setOnClickListener{
-            val intent = Intent(this, RunningActivity::class.java)
-            val actCon = ActivityContents(activityType = "Running")
-            Toast.makeText(
-                this,
-                "Run Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
-                Toast.LENGTH_SHORT
-            ).show()
-            startActivity(intent)
+            if (isGuest) {
+                // If user a guest, show the ad page
+                val intent = Intent(this, AdPage::class.java)
+                intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                startActivity(intent)
+            } else {
+                // else, proceed to RunningActivity
+                val intent = Intent(this, RunningActivity::class.java)
+                val actCon = ActivityContents(activityType = "running")
+                Toast.makeText(
+                    this,
+                    "Run Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                startActivity(intent)
+            }
         }
 
 

@@ -59,8 +59,6 @@ class LoginPage : AppCompatActivity() {
         }
     }
 
-
-
     private fun validateCredentials(validEmail: EditText, validPassword: EditText): Boolean { // validEmail and validPassword are of type "EditText"
         val email = validEmail.text.toString()
         val password = validPassword.text.toString()

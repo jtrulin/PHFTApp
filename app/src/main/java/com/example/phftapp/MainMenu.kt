@@ -31,21 +31,26 @@ class MainMenu : AppCompatActivity() {
             Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
         }
 
-
-        Toast.makeText(this, "in the main menu!!", Toast.LENGTH_SHORT).show()
-
         val activityButton = findViewById<Button>(R.id.wrkButton)
 
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
+            if(isGuest){
+                intent.putExtra("isGuest", true)
+            }
             startActivity(intent)
         }
 
         val trainerButton = findViewById<Button>(R.id.reqButton)
 
         trainerButton.setOnClickListener(){
-            val intent = Intent(this, Trainer::class.java)
-            startActivity(intent)
+            if(isGuest){
+                Toast.makeText(this, "Cannot access Trainer as Guest", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                val intent = Intent(this, Trainer::class.java)
+                startActivity(intent)
+            }
         }
 
 

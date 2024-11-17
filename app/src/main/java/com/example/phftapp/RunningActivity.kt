@@ -1,5 +1,6 @@
 package com.example.phftapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
 import android.widget.Button
@@ -31,12 +32,16 @@ class RunningActivity : AppCompatActivity() {
         val startButton = findViewById<Button>(R.id.Start)
         val stopButton = findViewById<Button>(R.id.Stop)
         val doneButton = findViewById<Button>(R.id.Done)
+        val menuButton = findViewById<Button>(R.id.menu)
 
         // Results
         var displayResult = findViewById<TextView>(R.id.TotalTimeDisplay)
         var displayDistance = findViewById<TextView>(R.id.TotalDistanceDisplayed)
         var displayPace = findViewById<TextView>(R.id.TotalPaceDisplayed)
         var displayCalories = findViewById<TextView>(R.id.TotalCaloriesDisplayed)
+        val progressButton = findViewById<Button>(R.id.chartProgress)
+
+        var caloriesBurned = 0.0f
 
         val user = User()  // User instance, replace with actual user data later with registration
         val activityContents = ActivityContents(activityType = "running")
@@ -51,6 +56,7 @@ class RunningActivity : AppCompatActivity() {
                 displayResult.text= ""
                 displayDistance.text = ""
                 displayPace.text = ""
+                displayCalories.text =""
 
 
             }
@@ -66,6 +72,8 @@ class RunningActivity : AppCompatActivity() {
                 displayResult.text= ""
                 displayDistance.text = ""
                 displayPace.text = ""
+                displayCalories.text =""
+
 
             }
             else {
@@ -77,6 +85,8 @@ class RunningActivity : AppCompatActivity() {
                 displayResult.text= ""
                 displayDistance.text = ""
                 displayPace.text = ""
+                displayCalories.text =""
+
             }
 
         }
@@ -95,17 +105,31 @@ class RunningActivity : AppCompatActivity() {
             val totalPace: Double = elapsedTimeInMinutes/totalDistance
 
             // passing User info to get and save calories, timer in ActivityContents is updated
-            val caloriesBurned = activityContents.trackCalories(user)
+            caloriesBurned = activityContents.trackCalories(user)
             activityContents.timer = elapsedTimeInMinutes.toFloat()
-
-
 
             displayResult.text = "Total Time: $elapsedTimeInMinutes minutes"
             displayDistance.text = "Total Distance: $totalDistance miles"
             displayPace.text = "Total Pace: $totalPace minutes per mile"
             displayCalories.text = "Calories Burned: $caloriesBurned"
-
-
         }
+
+        progressButton.setOnClickListener{
+            val intent = Intent(this, Tracking::class.java)
+            intent.putExtra("calories", caloriesBurned)
+            Toast.makeText(
+                this,
+                "in the chart",
+                Toast.LENGTH_SHORT
+            ).show()
+            startActivity(intent)
+        }
+
+        menuButton.setOnClickListener{
+            val intent = Intent(this, ChooseActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }
