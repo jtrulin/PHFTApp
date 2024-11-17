@@ -3,6 +3,7 @@ package com.example.phftapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,28 +32,30 @@ class MainMenu : AppCompatActivity() {
             Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
         }
 
-        val activityButton = findViewById<Button>(R.id.wrkButton)
+
+        Toast.makeText(this, "in the main menu!!", Toast.LENGTH_SHORT).show()
+
+        val activityButton = findViewById<ImageButton>(R.id.wrkButton)
 
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
-            if(isGuest){
-                intent.putExtra("isGuest", true)
-            }
             startActivity(intent)
         }
 
-        val trainerButton = findViewById<Button>(R.id.reqButton)
+        val trainerButton = findViewById<ImageButton>(R.id.reqButton)
 
         trainerButton.setOnClickListener(){
-            if(isGuest){
-                Toast.makeText(this, "Cannot access Trainer as Guest", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                val intent = Intent(this, Trainer::class.java)
-                startActivity(intent)
-            }
+            val intent = Intent(this, Trainer::class.java)
+            startActivity(intent)
         }
 
+        val paymentValidationButton = findViewById<Button>(R.id.paymentValidationButton)
+
+        paymentValidationButton.setOnClickListener(){
+            val intent = Intent(this, PaymentValidation::class.java)
+            Toast.makeText(this, "Payment Button, Click!", Toast.LENGTH_SHORT).show()
+            startActivity(intent)
+        }
 
 
 
