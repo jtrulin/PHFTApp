@@ -53,8 +53,10 @@ class MainMenu : AppCompatActivity() {
 
         paymentValidationButton.setOnClickListener(){
             val intent = Intent(this, PaymentValidation::class.java)
+            Toast.makeText(this, "Payment Button, click!", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         }
+
 
 
     }
