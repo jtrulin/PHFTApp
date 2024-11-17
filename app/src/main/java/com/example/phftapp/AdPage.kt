@@ -42,6 +42,10 @@ class AdPage : AppCompatActivity() {
                 val intent = Intent(this, RunningActivity::class.java)
                 startActivity(intent)
             }
+            else if(activityType == "weightlifting"){
+                val intent = Intent(this, LiftingActivity::class.java)
+                startActivity(intent)
+            }
 
         }
 
