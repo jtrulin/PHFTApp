@@ -46,11 +46,12 @@ class RegisterPage : AppCompatActivity() {
         val userSecurityAnswer = findViewById<EditText>(R.id.enterAnswer)
         val registerButton = findViewById<Button>(R.id.rButton)
 
-        // setting up security questions with the spinner
-        // setting up security questions with the spinner
-        // setting up security questions with the spinner
-        val securityQuestionsSpinner = findViewById<Spinner>(R.id.spinner)
-        val listQuestions = listOf(
+
+        val newSpinner = findViewById<Spinner>(R.id.newSpinner)
+
+
+// List of security questions
+        val questions = listOf(
             "Select Security Question",
             "What is your mother's maiden name?",
             "What was the name of your first pet?",
@@ -59,56 +60,46 @@ class RegisterPage : AppCompatActivity() {
             "What is your favorite book?"
         )
 
-        // Custom ArrayAdapter to set main Spinner text to white and drop-down items to black
-        val arrayAdapter = object : ArrayAdapter<String>(this, R.layout.spinner_item, listQuestions) {
+// Custom ArrayAdapter for the Spinner
+        val adapter = object : ArrayAdapter<String>(this, R.layout.spinner_item, questions) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getView(position, convertView, parent)
-
-                // Set color for the main view of the Spinner (shown when closed) to white
-                (view as? TextView)?.apply {
+                (view as TextView).apply {
                     setTextColor(resources.getColor(R.color.white, null))
-                    textSize = 16f // Optional: Adjust text size
                 }
-
                 return view
             }
 
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent)
-
-                // Set color for drop-down items to black
-                (view as? TextView)?.apply {
-                    setTextColor(resources.getColor(R.color.black, null))
-                    textSize = 16f // Optional: Adjust text size
+                (view as TextView).apply {
+                    setTextColor(resources.getColor(R.color.white, null))
+                    setBackgroundColor(resources.getColor(R.color.darkGray, null))
                 }
-
                 return view
             }
         }
 
-        // Apply the custom adapter to the Spinner
-        securityQuestionsSpinner.adapter = arrayAdapter
+// Apply the custom adapter
+        newSpinner.adapter = adapter
 
-        // Handle item selection for the Spinner
-        securityQuestionsSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedQuestion = parent.getItemAtPosition(position).toString()
-
-                // Ignore if the default item is selected
-                if (selectedQuestion != "Select Security Question") {
-                    Toast.makeText(this@RegisterPage, "You selected '$selectedQuestion'", Toast.LENGTH_SHORT).show()
+// Handle Spinner item selection
+        newSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (position != 0) { // Ignore the default option
+                    val selectedQuestion = questions[position]
+                    Toast.makeText(this@RegisterPage, "Selected: $selectedQuestion", Toast.LENGTH_SHORT).show()
                 }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // No action needed here
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // No action needed
             }
         }
+
+
+
+
 
         registerButton.setOnClickListener {
             if (validateCredentials(userEmail, userPassword, userID)) {

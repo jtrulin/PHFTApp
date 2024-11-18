@@ -165,15 +165,17 @@
                     tools:ignore="Autofill,HardcodedText" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/newSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:minHeight="48dp"
-                    android:theme="@style/CustomSpinner"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginTop="16dp"
+                    android:spinnerMode="dropdown"
+                    android:backgroundTint="@color/white"
+                    android:theme="@style/Widget.AppCompat.Spinner"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/regPassword" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/regPassword" />
+
 
 
 

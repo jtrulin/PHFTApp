@@ -5,7 +5,7 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="buttonStyle">@style/CustomButtonStyle</item>
-        <item name="spinnerStyle">@style/CustomSpinner</item>
+        <item name="spinnerStyle">@style/Widget.AppCompat.Button</item>
         <item name="colorPrimary">@color/cyan</item>
         <item name="colorPrimaryDark">@color/cyan</item>
         <item name="colorAccent">@color/cyan</item>
@@ -15,11 +15,11 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
-    <style name="CustomSpinner" parent="Widget.AppCompat.Spinner.Underlined">
-        <item name="android:backgroundTint">@android:color/white</item>
+    <style name="Widget.AppCompat.Spinner" parent="Widget.AppCompat.Spinner">
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:popupBackground">@color/darkGray</item>
     </style>
+
+
 
     <style name="CustomButtonStyle" parent="Widget.AppCompat.Button">
         <item name="android:backgroundTint">@color/cyan</item>
