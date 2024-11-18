@@ -25,6 +25,7 @@ class MainMenu : AppCompatActivity() {
         val activityButton = findViewById<ImageButton>(R.id.wrkButton)
         val socialButton = findViewById<ImageButton>(R.id.socButton)
         val trainerButton = findViewById<ImageButton>(R.id.reqButton)
+        val logoutButton = findViewById<Button>(R.id.loutButton)
 
         // knows if user is logged in or if it's a guest, use later to limit functionalities
 
@@ -67,7 +68,11 @@ class MainMenu : AppCompatActivity() {
 
         paymentValidationButton.setOnClickListener(){
             val intent = Intent(this, PaymentValidation::class.java)
-            Toast.makeText(this, "Payment Button, Click!", Toast.LENGTH_SHORT).show()
+            startActivity(intent)
+        }
+
+        logoutButton.setOnClickListener(){
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
