@@ -24,14 +24,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/registerPageButton"
+        android:id="@+id/continueButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="156dp"
         android:layout_marginTop="132dp"
         android:layout_marginEnd="165dp"
         android:layout_marginBottom="165dp"
-        android:text="Register"
+        android:text="Continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

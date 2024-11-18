@@ -21,9 +21,9 @@ class PaymentSuccess : AppCompatActivity() {
         }
 
         val text = findViewById<TextView>(R.id.text)
-        val toRegisterPage = findViewById<Button>(R.id.registerPageButton)
-        toRegisterPage.setOnClickListener {
-            val intent = Intent(this, RegisterPage::class.java)
+        val toMainMenu = findViewById<Button>(R.id.continueButton)
+        toMainMenu.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
         }
     }
