@@ -32,7 +32,8 @@ class LoginPage : AppCompatActivity() {
         val validPassword = findViewById<EditText>(R.id.editTextTextPassword)
         val submitButton = findViewById<Button>(R.id.sButton)
 
-        submitButton.setOnClickListener {
+
+       submitButton.setOnClickListener {
             if(validateCredentials(validEmail,validPassword)) {
 
                 val email = validEmail.text.toString()

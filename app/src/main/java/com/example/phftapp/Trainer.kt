@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 
 class Trainer : AppCompatActivity() {
 
-    private var totalRatings = 4.5f  // Example initial average rating
+    private var totalRatings = 0.0f  // Example initial average rating
     private var ratingCount = 10
     private val sharedPref by lazy { getSharedPreferences("TrainerRatings", MODE_PRIVATE) }
 
