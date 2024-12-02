@@ -32,6 +32,8 @@ class ChooseActivity : AppCompatActivity() {
 
         // initializing buttons
         val runButton = findViewById<Button>(R.id.runningButton)
+        val walkButton = findViewById<Button>(R.id.walkingButton)
+        val cycleButton = findViewById<Button>(R.id.cyclingButton)
         val liftButton = findViewById<Button>(R.id.weightliftButton)
 
         runButton.setOnClickListener{
@@ -53,6 +55,46 @@ class ChooseActivity : AppCompatActivity() {
             }
         }
 
+        walkButton.setOnClickListener(){
+            if (isGuest) {
+                // If user a guest, show the ad page
+                activityType = "walking"
+                val intent = Intent(this, AdPage::class.java)
+                intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                startActivity(intent)
+            } else {
+                // else, proceed to WalkingActivity
+                val intent = Intent(this, WalkingActivity::class.java)
+                val actCon = ActivityContents(activityType = "walking")
+                Toast.makeText(
+                    this,
+                    "Walk Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                startActivity(intent)
+            }
+        }
+
+        cycleButton.setOnClickListener(){
+            if (isGuest) {
+                // If user a guest, show the ad page
+                activityType = "cycling"
+                val intent = Intent(this, AdPage::class.java)
+                intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                startActivity(intent)
+            } else {
+                // else, proceed to WalkingActivity
+                val intent = Intent(this, CyclingActivity::class.java)
+                val actCon = ActivityContents(activityType = "cycling")
+                Toast.makeText(
+                    this,
+                    "Cycle Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                startActivity(intent)
+            }
+        }
+
         liftButton.setOnClickListener{
             if (isGuest) {
                 // If user a guest, show the ad page
@@ -64,10 +106,10 @@ class ChooseActivity : AppCompatActivity() {
             } else {
                 // else, proceed to WeightLifting
                 val intent = Intent(this, LiftingActivity::class.java)
-                val actCon = ActivityContents(activityType = "running")
+                val actCon = ActivityContents(activityType = "weightlifting")
                 Toast.makeText(
                     this,
-                    "Run Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                    "Weightlifting Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
                     Toast.LENGTH_SHORT
                 ).show()
                 startActivity(intent)

@@ -11,9 +11,9 @@
         android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/background_image"
         android:scaleType="centerCrop"
-        android:src="@drawable/background"
-        android:contentDescription="@string/background_image" />
+        android:src="@drawable/background" />
 
     <View
         android:layout_width="match_parent"
@@ -25,12 +25,12 @@
         android:layout_width="200dp"
         android:layout_height="120dp"
         android:layout_marginTop="80dp"
-        app:srcCompat="@drawable/workoutbutton"
-        android:scaleType="fitXY"
         android:background="@null"
-        app:layout_constraintTop_toTopOf="parent"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/workoutbutton" />
 
     <ImageButton
         android:id="@+id/socButton"
@@ -49,24 +49,24 @@
         android:layout_width="200dp"
         android:layout_height="120dp"
         android:layout_marginTop="60dp"
-        app:srcCompat="@drawable/trainerbutton"
-        android:scaleType="fitXY"
         android:background="@null"
-        app:layout_constraintTop_toBottomOf="@id/socButton"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/socButton"
+        app:srcCompat="@drawable/trainerbutton" />
 
     <ImageButton
         android:id="@+id/paymentValidationButton"
         android:layout_width="200dp"
         android:layout_height="120dp"
         android:layout_marginTop="60dp"
-        app:srcCompat="@drawable/memberbutton"
-        android:scaleType="fitXY"
         android:background="@null"
-        app:layout_constraintTop_toBottomOf="@id/reqButton"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/reqButton"
+        app:srcCompat="@drawable/memberbutton" />
 
     <Button
         android:id="@+id/loutButton"
@@ -75,5 +75,13 @@
         android:text="Logout"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="10dp" />
+
+    <Button
+        android:id="@+id/goalButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Goals"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

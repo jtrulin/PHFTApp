@@ -11,6 +11,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainMenu : AppCompatActivity() {
+
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -21,14 +24,16 @@ class MainMenu : AppCompatActivity() {
             insets
         }
 
+        databaseHelper = DatabaseHelper(this)
+
         // Buttons
         val activityButton = findViewById<ImageButton>(R.id.wrkButton)
         val socialButton = findViewById<ImageButton>(R.id.socButton)
         val trainerButton = findViewById<ImageButton>(R.id.reqButton)
         val logoutButton = findViewById<Button>(R.id.loutButton)
+        val goalsButton = findViewById<Button>(R.id.goalButton)
 
         // knows if user is logged in or if it's a guest, use later to limit functionalities
-
         val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
                                                                                 // (passed in LoginPage.kt for logged in user and MainMenu.kt for guest
 
@@ -46,12 +51,37 @@ class MainMenu : AppCompatActivity() {
             startActivity(intent)
         }
 
-        socialButton.setOnClickListener(){
-           if(isGuest){
-               Toast.makeText(this, "Guests don't have access! Please Register", Toast.LENGTH_SHORT).show()
-           }
+
+        goalsButton.setOnClickListener(){
+            val intent = Intent(this, GoalsPage::class.java)
+
+            if(isGuest){
+                intent.putExtra("isGuest", true)
+                //val intent = Intent(this, GoalsPage::class.java)
+                //startActivity(intent)
+
+            } else{
+
+                val email = intent.getStringExtra("email") ?: ""
+                val password = intent.getStringExtra("password") ?: ""
+
+                if (databaseHelper.readUser(email, password)) {
+                    val userId = databaseHelper.getUserId(email, password)
+                    if (userId != null) {
+                        intent.putExtra("userId", userId.toString())
+                    }
+                }
+
+            }
+
+            startActivity(intent)
         }
 
+        socialButton.setOnClickListener(){
+            if(isGuest){
+                Toast.makeText(this, "Guests don't have access! Please Register", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         trainerButton.setOnClickListener(){
             if(isGuest){
@@ -60,7 +90,6 @@ class MainMenu : AppCompatActivity() {
             else{
                 val intent = Intent(this, Trainer::class.java)
                 startActivity(intent)
-
             }
         }
 

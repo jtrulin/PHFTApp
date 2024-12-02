@@ -59,4 +59,21 @@ class DatabaseHelper(private val context: Context) :
         return userExists
     }
 
+
+    // ------------------------ aaron fix pls
+
+    //Helps fetch UserId based on Username and Password
+    fun getUserId(email: String, password: String): Int? {
+        val db = readableDatabase
+        val query = "SELECT id FROM users WHERE email = ? AND password = ?"
+        val cursor = db.rawQuery(query, arrayOf(email, password))
+
+        var userId: Int? = null
+        if (cursor.moveToFirst()) {
+            userId = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+        }
+        cursor.close()
+        return userId
+    }
+
 }
