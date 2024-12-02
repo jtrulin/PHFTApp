@@ -50,7 +50,10 @@ class ChooseActivity : AppCompatActivity() {
             if (isGuest) {
                 // If user a guest, show the ad page
                 val intent = Intent(this, AdPage::class.java)
-                intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                intent.putExtra(
+                    "activityType",
+                    activityType
+                ) // ad page goes to the intended activity after pressing continue
                 startActivity(intent)
             } else {
                 if (userId != -1) {
@@ -66,6 +69,7 @@ class ChooseActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+        }
 
         walkButton.setOnClickListener{
             if (isGuest) {
@@ -166,5 +170,6 @@ class ChooseActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+
     }
 }

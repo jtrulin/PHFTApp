@@ -27,7 +27,6 @@ class MainMenu : AppCompatActivity() {
 
         databaseHelper = DatabaseHelper(this)
 
-
         // Get email and password from intent
         val email = intent.getStringExtra("email") ?: ""
         val password = intent.getStringExtra("password") ?: ""
@@ -62,7 +61,7 @@ class MainMenu : AppCompatActivity() {
         val goalsButton = findViewById<Button>(R.id.goalButton)
 
         // knows if user is logged in or if it's a guest, use later to limit functionalities
-        val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
+        //val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
                                                                                 // (passed in LoginPage.kt for logged in user and MainMenu.kt for guest
 
         if (isGuest) {
@@ -70,14 +69,18 @@ class MainMenu : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
         }
-        
-        //just added
+
+
         val userId = intent.getIntExtra("userId", -1) // Retrieve userId from LoginPage
 
+        /*
         if (userId == -1) {
             Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
             finish() // Exit if userId is not valid
         }
+        */
+
+
 
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
@@ -137,6 +140,7 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
         val socialmediabutton = findViewById<ImageButton>(R.id.socButton)
 
         socialmediabutton.setOnClickListener(){

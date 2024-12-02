@@ -2,13 +2,6 @@ package com.example.phftapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
 import android.os.SystemClock
 import android.text.Editable
 import android.text.TextWatcher
@@ -60,7 +53,11 @@ class YogaActivity : AppCompatActivity() {
 
         // Types of Yoga Activities
         val yogaTypes = arrayOf("Yin Yoga", "Power Yoga", "Hatha Yoga", "Restorative Yoga")
-        val arrayAdapt = ArrayAdapter(this@YogaActivity, android.R.layout.simple_spinner_dropdown_item,yogaTypes)
+        val arrayAdapt = ArrayAdapter(
+            this@YogaActivity,
+            android.R.layout.simple_spinner_dropdown_item,
+            yogaTypes
+        )
         spinnerID.adapter = arrayAdapt
 
         var caloriesBurned = 0.0f
