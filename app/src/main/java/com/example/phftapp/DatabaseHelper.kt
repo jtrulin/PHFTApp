@@ -11,7 +11,7 @@ class DatabaseHelper(private val context: Context) :
 
     companion object {
         private const val DB_NAME = "library_fitness.db"
-        private const val DB_VERSION = 1
+        private const val DB_VERSION = 3
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -24,10 +24,25 @@ class DatabaseHelper(private val context: Context) :
                 "password Text," +
                 "securityAnswer Text)"
         )
+
+        db?.execSQL("CREATE TABLE payment (cardNumber Text Primary Key," +
+                "cvv Integer," +
+                "month Integer," +
+                "year Integer,"+
+                "user_id INTEGER," +
+                "FOREIGN KEY(user_id) REFERENCES users(id))"
+        )
+        db?.execSQL("CREATE TABLE progressReport (calories_burned Real," +
+                "user_id INTEGER," +
+                "FOREIGN KEY(user_id) REFERENCES users(id))"
+        )
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS users")
+        db?.execSQL("DROP TABLE IF EXISTS payment")
+        db?.execSQL("DROP TABLE IF EXISTS progressReport")
         onCreate(db)
     }
 
@@ -48,6 +63,31 @@ class DatabaseHelper(private val context: Context) :
         return insertId
     }
 
+    //Inserting Card
+    fun insertCard(payment: Payment): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("cardNumber", payment.cardNumber)
+            put("cvv", payment.cvv)
+            put("month", payment.month)
+            put("year", payment.year)
+            put("user_id", payment.userId)
+        }
+        val insertId = db.insert("payment", null, values)
+        return insertId
+    }
+
+    //Inserting Progress Report
+    fun insertProgress(progressReport: ProgressReport): Long {
+        val db = writableDatabase
+        val values = ContentValues().apply {
+            put("calories_burned", progressReport.caloriesBurned)
+            put("user_id", progressReport.userId)
+        }
+        val insertId = db.insert("progressReport", null, values)
+        return insertId
+    }
+
     //Validating User
     fun readUser(email: String, password: String): Boolean {
         val db = readableDatabase
@@ -60,7 +100,18 @@ class DatabaseHelper(private val context: Context) :
     }
 
 
-    // ------------------------ aaron fix pls
+    fun getUserName(email: String, password: String): String? {
+        val db = readableDatabase
+        val query = "SELECT name FROM users WHERE email = ? AND password = ?"
+        val cursor = db.rawQuery(query, arrayOf(email, password))
+
+        var userName: String? = null
+        if (cursor.moveToFirst()) {
+            userName = cursor.getString(cursor.getColumnIndexOrThrow("name"))
+        }
+        cursor.close()
+        return userName
+    }
 
     //Helps fetch UserId based on Username and Password
     fun getUserId(email: String, password: String): Int? {
@@ -75,5 +126,6 @@ class DatabaseHelper(private val context: Context) :
         cursor.close()
         return userId
     }
+    //just to push
 
 }

@@ -20,6 +20,21 @@
         android:layout_height="match_parent"
         android:background="#B3000000" />
 
+    <TextView
+        android:id="@+id/tvUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/cyan"
+        android:gravity="start"
+        android:text="Welcome, User\nID: 0"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/wrkButton"
         android:layout_width="200dp"
@@ -72,10 +87,7 @@
         android:id="@+id/loutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/logout"
-        android:fontFamily="@font/teko"
-        android:textSize="21sp"
-        android:textStyle="bold"
+        android:text="Logout"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="10dp" />
 
@@ -83,10 +95,7 @@
         android:id="@+id/goalButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/goals"
-        android:fontFamily="@font/teko"
-        android:textSize="21sp"
-        android:textStyle="bold"
+        android:text="Goals"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="8dp" />
 
