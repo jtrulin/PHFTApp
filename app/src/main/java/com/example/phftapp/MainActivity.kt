@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+
         val guestButton = findViewById<Button>(R.id.gButton)
         val loginButton = findViewById<Button>(R.id.lButton)
         val registerButton = findViewById<Button>(R.id.rButton)
@@ -45,6 +46,6 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+//just to push
     }
 }
