@@ -36,6 +36,9 @@ class ChooseActivity : AppCompatActivity() {
         val cycleButton = findViewById<Button>(R.id.cyclingButton)
         val yogaButton = findViewById<Button>(R.id.yogaButton)
         val liftButton = findViewById<Button>(R.id.weightliftButton)
+        val homePageButton = findViewById<Button>(R.id.menu)
+
+
 
         runButton.setOnClickListener{
             if (isGuest) {
@@ -135,6 +138,11 @@ class ChooseActivity : AppCompatActivity() {
                 ).show()
                 startActivity(intent)
             }
+        }
+
+        homePageButton.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
         }
     }
 }

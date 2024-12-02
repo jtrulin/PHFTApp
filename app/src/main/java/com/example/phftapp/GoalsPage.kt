@@ -16,8 +16,6 @@ import androidx.core.view.WindowInsetsCompat
 class GoalsPage : AppCompatActivity() {
     private lateinit var goalAdapter: ArrayAdapter<String>
     private val goalList = mutableListOf<String>() // Store goals in a list
-    private lateinit var databaseHelper: DatabaseHelper
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

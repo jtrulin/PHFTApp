@@ -32,7 +32,6 @@ class Tracking : AppCompatActivity() {
             insets
         }
 
-
         val calories = intent.getFloatExtra("calories", 0.0f) // default to 0.0 if nothing is passed
         val barChar = findViewById<com.github.mikephil.charting.charts.BarChart>(R.id.barChar)
         barChar.xAxis.textColor = Color.WHITE

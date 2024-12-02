@@ -12,8 +12,6 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainMenu : AppCompatActivity() {
 
-    private lateinit var databaseHelper: DatabaseHelper
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,8 +21,6 @@ class MainMenu : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
-        databaseHelper = DatabaseHelper(this)
 
         // Buttons
         val activityButton = findViewById<ImageButton>(R.id.wrkButton)
@@ -52,26 +48,11 @@ class MainMenu : AppCompatActivity() {
         }
 
 
-        goalsButton.setOnClickListener(){
+        // Goals Button
+        goalsButton.setOnClickListener {
             val intent = Intent(this, GoalsPage::class.java)
-
-            if(isGuest){
+            if (isGuest) {
                 intent.putExtra("isGuest", true)
-                //val intent = Intent(this, GoalsPage::class.java)
-                //startActivity(intent)
-
-            } else{
-
-                val email = intent.getStringExtra("email") ?: ""
-                val password = intent.getStringExtra("password") ?: ""
-
-                if (databaseHelper.readUser(email, password)) {
-                    val userId = databaseHelper.getUserId(email, password)
-                    if (userId != null) {
-                        intent.putExtra("userId", userId.toString())
-                    }
-                }
-
             }
             startActivity(intent)
         }
