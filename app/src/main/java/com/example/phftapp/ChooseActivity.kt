@@ -30,34 +30,42 @@ class ChooseActivity : AppCompatActivity() {
         val isGuest = intent.getBooleanExtra("isGuest", false)
         var activityType = "running" // default activity is running
 
+        // Retrieve userId from Intent
+        val userId = intent.getIntExtra("userId", -1)
+        if (userId == -1 && !isGuest) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if userId is invalid
+        }
+
         // initializing buttons
         val runButton = findViewById<Button>(R.id.runningButton)
         val walkButton = findViewById<Button>(R.id.walkingButton)
         val cycleButton = findViewById<Button>(R.id.cyclingButton)
         val yogaButton = findViewById<Button>(R.id.yogaButton)
         val liftButton = findViewById<Button>(R.id.weightliftButton)
-        val homePageButton = findViewById<Button>(R.id.menu)
+        val Hiitbutton = findViewById<Button>(R.id.hiitButton)
 
 
-
-        runButton.setOnClickListener{
+        runButton.setOnClickListener {
             if (isGuest) {
                 // If user a guest, show the ad page
                 val intent = Intent(this, AdPage::class.java)
                 intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
                 startActivity(intent)
             } else {
-                // else, proceed to RunningActivity
-                val intent = Intent(this, RunningActivity::class.java)
-                val actCon = ActivityContents(activityType = "running")
-                Toast.makeText(
-                    this,
-                    "Run Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
-                    Toast.LENGTH_SHORT
-                ).show()
-                startActivity(intent)
+                if (userId != -1) {
+                    // else, proceed to RunningActivity
+                    val intent = Intent(this, RunningActivity::class.java)
+                    intent.putExtra("userId", userId)
+                    val actCon = ActivityContents(activityType = "running")
+                    Toast.makeText(
+                        this,
+                        "Run Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    startActivity(intent)
+                }
             }
-        }
 
         walkButton.setOnClickListener{
             if (isGuest) {
@@ -139,10 +147,24 @@ class ChooseActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
-        homePageButton.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
-            startActivity(intent)
-        }
+            Hiitbutton.setOnClickListener{
+                if (isGuest) {
+                    // If user a guest, show the ad page
+                    activityType = "hiit"
+                    val intent = Intent(this, AdPage::class.java)
+                    intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                    startActivity(intent)
+                } else {
+                    // else, proceed to WalkingActivity
+                    val intent = Intent(this, hiit::class.java)
+                    val actCon = ActivityContents(activityType = "hiit")
+                    Toast.makeText(
+                        this,
+                        "hiit button pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    startActivity(intent)
+                }
+            }
     }
 }

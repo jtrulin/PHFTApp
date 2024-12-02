@@ -2,6 +2,13 @@ package com.example.phftapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.TextView
+import android.widget.Toast
 import android.os.SystemClock
 import android.text.Editable
 import android.text.TextWatcher

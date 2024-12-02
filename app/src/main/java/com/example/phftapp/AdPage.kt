@@ -1,6 +1,5 @@
 package com.example.phftapp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -51,6 +50,9 @@ class AdPage : AppCompatActivity() {
                 startActivity(intent)
             } else if (activityType == "yoga"){
                 val intent = Intent(this, YogaActivity::class.java)
+                startActivity(intent)
+            } else if (activityType == "hiit"){
+                val intent = Intent(this, hiit::class.java)
                 startActivity(intent)
             }
         }

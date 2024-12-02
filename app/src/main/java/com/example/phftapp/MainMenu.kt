@@ -3,6 +3,7 @@ package com.example.phftapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 
 class MainMenu : AppCompatActivity() {
 
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -20,6 +23,35 @@ class MainMenu : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        databaseHelper = DatabaseHelper(this)
+
+
+        // Get email and password from intent
+        val email = intent.getStringExtra("email") ?: ""
+        val password = intent.getStringExtra("password") ?: ""
+        val isGuest = intent.getBooleanExtra("isGuest", false)
+
+        // Reference the TextView for user info
+        val userInfoTextView = findViewById<TextView>(R.id.tvUserInfo)
+
+        if (isGuest) {
+            // Display guest message if the user is a guest
+            userInfoTextView.text = "Welcome, Guest"
+        } else {
+            // Fetch username and user ID from the database
+            val userName = databaseHelper.getUserName(email, password)
+            val userId = databaseHelper.getUserId(email, password)
+
+            if (userName != null && userId != null) {
+                // Display the welcome message with username and ID
+                userInfoTextView.text = "Welcome, $userName\nID: $userId"
+            } else {
+                // Handle the case where user data couldn't be fetched
+                userInfoTextView.text = "Welcome, User"
+                Toast.makeText(this, "Failed to fetch user information.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         // Buttons
@@ -38,21 +70,34 @@ class MainMenu : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
         }
+        
+        //just added
+        val userId = intent.getIntExtra("userId", -1) // Retrieve userId from LoginPage
+
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if userId is not valid
+        }
 
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
             if(isGuest){
                 intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId with correct key casing
             }
             startActivity(intent)
         }
 
 
-        // Goals Button
-        goalsButton.setOnClickListener {
+        goalsButton.setOnClickListener(){
             val intent = Intent(this, GoalsPage::class.java)
             if (isGuest) {
                 intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId
+                intent.putExtra("email", email) // Pass email
+                intent.putExtra("password", password) // Pass password
             }
             startActivity(intent)
         }
@@ -76,8 +121,16 @@ class MainMenu : AppCompatActivity() {
         val paymentValidationButton = findViewById<ImageButton>(R.id.paymentValidationButton)
 
         paymentValidationButton.setOnClickListener(){
-            val intent = Intent(this, PaymentValidation::class.java)
-            startActivity(intent)
+            if(isGuest){
+                Toast.makeText(this, "Please Register First!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, RegisterPage::class.java)
+                startActivity(intent)
+            } else{
+                val intent = Intent(this, PaymentValidation::class.java)
+                intent.putExtra("userId", userId)
+                startActivity(intent)
+            }
+
         }
 
         logoutButton.setOnClickListener(){
