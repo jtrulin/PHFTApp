@@ -73,7 +73,6 @@ class MainMenu : AppCompatActivity() {
                 }
 
             }
-
             startActivity(intent)
         }
 

@@ -115,9 +115,5 @@ class ChooseActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
-
-
-
     }
 }
