@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="136dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="7dp"
         android:backgroundTint="@color/cyan"
         android:gravity="start"
         android:text="Welcome, User\nID: 0"

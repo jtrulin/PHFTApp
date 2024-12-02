@@ -154,7 +154,7 @@ class RunningActivity : AppCompatActivity() {
             val intent = Intent(this, ChooseActivity::class.java)
             startActivity(intent)
         }
-
+        //just to push
 
     }
 }

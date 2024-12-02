@@ -134,6 +134,7 @@ class ChooseActivity : AppCompatActivity() {
                     ).show()
                     startActivity(intent)
                 }
+                //just to push
             }
         }
     }

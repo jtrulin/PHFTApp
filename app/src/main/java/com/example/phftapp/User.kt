@@ -24,3 +24,4 @@ data class ProgressReport(
     val caloriesBurned: Double,
     val userId: Int
 )
+//just to push
