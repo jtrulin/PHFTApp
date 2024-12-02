@@ -7,29 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".YogaActivity">
 
-    <Spinner
-        android:id="@+id/yogaPoseSpinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:theme = "@style/Widget.AppCompat.Spinner"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="50dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
     <Chronometer
         android:id="@+id/chronometer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/deathstar"
         android:gravity="center"
         android:textSize="50sp"
-        app:layout_constraintTop_toBottomOf="@+id/yogaPoseSpinner"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/startButton"
@@ -67,11 +55,23 @@
         app:layout_constraintStart_toEndOf="@+id/stopButton"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Spinner
+        android:id="@+id/yogaPoseSpinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:theme="@style/Widget.AppCompat.Spinner"
+        android:backgroundTint="@color/white"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/doneButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <EditText
         android:id="@+id/stressBefore"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="20dp"
         android:hint="Stress Level Before (1-10)"
         android:fontFamily="@font/teko"
         android:textSize="21sp"
@@ -79,7 +79,6 @@
         android:backgroundTint="@color/white"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yogaPoseSpinner" />
 
@@ -87,7 +86,7 @@
         android:id="@+id/stressAfter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:hint="Stress Level After (1-10)"
         android:textSize="21sp"
         android:fontFamily="@font/teko"
@@ -102,8 +101,8 @@
         android:id="@+id/Calories"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="Stress Level After (1-10)"
+        android:layout_marginTop="20dp"
+        android:hint="Calories Burned"
         android:textSize="21sp"
         android:fontFamily="@font/teko"
         android:textColorHint="@color/white"
