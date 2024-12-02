@@ -1,6 +1,5 @@
 package com.example.phftapp
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -36,6 +35,7 @@ class ChooseActivity : AppCompatActivity() {
         val cycleButton = findViewById<Button>(R.id.cyclingButton)
         val yogaButton = findViewById<Button>(R.id.yogaButton)
         val liftButton = findViewById<Button>(R.id.weightliftButton)
+        val Hiitbutton = findViewById<Button>(R.id.hiitButton)
 
         runButton.setOnClickListener{
             if (isGuest) {
@@ -136,5 +136,25 @@ class ChooseActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+        Hiitbutton.setOnClickListener{
+            if (isGuest) {
+                // If user a guest, show the ad page
+                activityType = "hiit"
+                val intent = Intent(this, AdPage::class.java)
+                intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                startActivity(intent)
+            } else {
+                // else, proceed to WalkingActivity
+                val intent = Intent(this, hiit::class.java)
+                val actCon = ActivityContents(activityType = "hiit")
+                Toast.makeText(
+                    this,
+                    "hiit button pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                startActivity(intent)
+            }
+        }
+
     }
 }
