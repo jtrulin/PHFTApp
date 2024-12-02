@@ -34,6 +34,7 @@ class ChooseActivity : AppCompatActivity() {
         val runButton = findViewById<Button>(R.id.runningButton)
         val walkButton = findViewById<Button>(R.id.walkingButton)
         val cycleButton = findViewById<Button>(R.id.cyclingButton)
+        val yogaButton = findViewById<Button>(R.id.yogaButton)
         val liftButton = findViewById<Button>(R.id.weightliftButton)
 
         runButton.setOnClickListener{
@@ -55,7 +56,7 @@ class ChooseActivity : AppCompatActivity() {
             }
         }
 
-        walkButton.setOnClickListener(){
+        walkButton.setOnClickListener{
             if (isGuest) {
                 // If user a guest, show the ad page
                 activityType = "walking"
@@ -75,7 +76,7 @@ class ChooseActivity : AppCompatActivity() {
             }
         }
 
-        cycleButton.setOnClickListener(){
+        cycleButton.setOnClickListener{
             if (isGuest) {
                 // If user a guest, show the ad page
                 activityType = "cycling"
@@ -110,6 +111,26 @@ class ChooseActivity : AppCompatActivity() {
                 Toast.makeText(
                     this,
                     "Weightlifting Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                startActivity(intent)
+            }
+        }
+
+        yogaButton.setOnClickListener{
+            if (isGuest) {
+                // If user a guest, show the ad page
+                activityType = "yoga"
+                val intent = Intent(this, AdPage::class.java)
+                intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                startActivity(intent)
+            } else {
+                // else, proceed to WalkingActivity
+                val intent = Intent(this, YogaActivity::class.java)
+                val actCon = ActivityContents(activityType = "yoga")
+                Toast.makeText(
+                    this,
+                    "Yoga Button Pressed: Activity Type = ${actCon.activityType}, Timer = ${actCon.timer}, Calories Burned = ${actCon.caloriesBurned}, Heart Rate = ${actCon.heartRate}",
                     Toast.LENGTH_SHORT
                 ).show()
                 startActivity(intent)

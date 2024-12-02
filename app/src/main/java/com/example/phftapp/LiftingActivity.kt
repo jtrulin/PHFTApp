@@ -1,5 +1,6 @@
 package com.example.phftapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
@@ -13,7 +14,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.text.TextWatcher
+import android.view.View
+import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 
 
@@ -21,6 +26,7 @@ class LiftingActivity : AppCompatActivity() {
     private var timeWhenStopped: Long = 0  // Track elapsed time when paused
     private var isRunning = false
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -101,6 +107,43 @@ class LiftingActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+
+        // Custom ArrayAdapter for the Spinner
+        val adapter = object : ArrayAdapter<String>(this, R.layout.spinner_item, lifts) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent)
+                (view as TextView).apply {
+                    setTextColor(resources.getColor(R.color.white, null))
+                }
+                return view
+            }
+
+            override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getDropDownView(position, convertView, parent)
+                (view as TextView).apply {
+                    setTextColor(resources.getColor(R.color.white, null))
+                    setBackgroundColor(resources.getColor(R.color.darkGray, null))
+                }
+                return view
+            }
+        }
+
+        // Apply the custom adapter
+        spinnerID.adapter = adapter
+
+        // Handle Spinner item selection
+        spinnerID.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (position != 0) { // Ignore the default option
+                    val selectedLift =  lifts[position]
+                    Toast.makeText(this@LiftingActivity, "Selected: $selectedLift", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // No action needed
+            }
+        }
 
 
 

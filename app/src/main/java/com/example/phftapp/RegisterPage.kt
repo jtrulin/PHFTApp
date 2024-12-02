@@ -80,10 +80,10 @@ class RegisterPage : AppCompatActivity() {
             }
         }
 
-// Apply the custom adapter
+        // Apply the custom adapter
         newSpinner.adapter = adapter
 
-// Handle Spinner item selection
+        // Handle Spinner item selection
         newSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 if (position != 0) { // Ignore the default option
@@ -96,10 +96,6 @@ class RegisterPage : AppCompatActivity() {
                 // No action needed
             }
         }
-
-
-
-
 
         registerButton.setOnClickListener {
             if (validateCredentials(userEmail, userPassword, userID)) {

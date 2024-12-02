@@ -120,11 +120,11 @@
                     tools:ignore="HardcodedText" />
 
                 <Button
-                    android:id="@+id/swimButton"
+                    android:id="@+id/yogaButton"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="75dp"
-                    android:text="Swimming"
+                    android:text="Yoga"
                     android:backgroundTint="@color/cyan"
                     android:textColor="@color/black"
                     android:fontFamily="@font/teko"

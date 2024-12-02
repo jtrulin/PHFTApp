@@ -14,7 +14,6 @@ data class ActivityContents(
             "yoga" -> 2.0f
             "hiit" -> 10.0f
             "weightlifting" -> 5.0f
-            "swimming" -> 7.0f
              else -> 1.0f
         }
 
