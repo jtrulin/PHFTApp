@@ -20,6 +20,21 @@
         android:layout_height="match_parent"
         android:background="#B3000000" />
 
+    <TextView
+        android:id="@+id/tvUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/cyan"
+        android:gravity="start"
+        android:text="Welcome, User\nID: 0"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/wrkButton"
         android:layout_width="200dp"
