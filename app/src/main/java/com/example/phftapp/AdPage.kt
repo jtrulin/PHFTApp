@@ -49,9 +49,10 @@ class AdPage : AppCompatActivity() {
             } else if(activityType == "cycling"){
                 val intent = Intent(this, CyclingActivity::class.java)
                 startActivity(intent)
+            } else if (activityType == "yoga"){
+                val intent = Intent(this, YogaActivity::class.java)
+                startActivity(intent)
             }
-
         }
-
     }
 }

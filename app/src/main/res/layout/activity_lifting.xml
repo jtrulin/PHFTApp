@@ -16,6 +16,7 @@
         android:countDown="true"
         android:gravity="center"
         android:textSize="50sp"
+        android:fontFamily="@font/deathstar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -27,7 +28,9 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="24dp"
         android:text="Start"
-        android:textSize="20sp"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/Stop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chronometer" />
@@ -40,7 +43,9 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="100dp"
         android:text="Stop"
+        android:fontFamily="@font/teko"
         android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/chronometer" />
 
@@ -53,6 +58,7 @@
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="number"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -66,7 +72,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="576dp"
         android:text="Set Rest Time:"
-        android:textSize="25dp"
+        android:textSize="30dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -76,7 +84,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="516dp"
         android:text="Number of Reps:"
-        android:textSize="25dp"
+        android:textSize="30dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,7 +96,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="456dp"
         android:text="Number of Sets:"
-        android:textSize="25dp"
+        android:textSize="30dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -96,7 +108,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="404dp"
         android:text="lb of Weights:"
-        android:textSize="25dp"
+        android:textSize="30dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -109,6 +123,7 @@
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="number"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -125,6 +140,7 @@
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="number"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -141,6 +157,7 @@
         android:layout_marginEnd="50dp"
         android:ems="10"
         android:inputType="number"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
@@ -152,8 +169,13 @@
         android:id="@+id/TypeOfLift"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:theme = "@style/Widget.AppCompat.Spinner"
+        android:backgroundTint="@color/white"
         android:layout_marginTop="200dp"
         app:layout_constraintTop_toBottomOf="@+id/chronometer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
         tools:layout_editor_absoluteX="1dp" />
 
     <Button
@@ -162,6 +184,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
         android:text="Chart Progress"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
