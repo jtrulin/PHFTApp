@@ -16,44 +16,60 @@
         android:layout_marginTop="60dp"
         android:gravity="center"
         android:textSize="50sp"
+        android:fontFamily="@font/deathstar"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginTop="20dp"
         android:text="Start"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/Stop"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@id/Stop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer" />
+        app:layout_constraintTop_toBottomOf="@id/runningGif" />
 
     <Button
         android:id="@+id/Stop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginTop="20dp"
         android:text="Stop"
+        android:fontFamily="@font/teko"
         android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/chronometer" />
+        app:layout_constraintStart_toEndOf="@id/Start"
+        app:layout_constraintTop_toBottomOf="@id/runningGif" />
 
     <Button
         android:id="@+id/Done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="420dp"
+        android:layout_marginTop="40dp"
         android:text="Done"
+        android:fontFamily="@font/teko"
         android:textSize="21sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/Stop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/runningGif"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/chronometer"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:src="@raw/running_gif"
+        android:visibility="visible" />
+
 
     <TextView
         android:id="@+id/TotalTimeDisplay"
@@ -61,7 +77,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="500dp"
         android:text=""
-        android:textSize="25dp"
+        android:textSize="35dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,8 +89,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text=""
-        android:textSize="25dp"
-
+        android:textSize="35dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/TotalTimeDisplay"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -82,7 +101,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text=""
-        android:textSize="25dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
+        android:textSize="35dp"
         app:layout_constraintTop_toBottomOf="@+id/TotalDistanceDisplayed" />
 
     <TextView
@@ -91,7 +112,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text=""
-        android:textSize="25dp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
+        android:textSize="35dp"
 
         app:layout_constraintTop_toBottomOf="@+id/TotalPaceDisplayed" />
 
@@ -102,6 +125,9 @@
         android:layout_marginTop="350dp"
         android:layout_marginBottom="16dp"
         android:text="Chart Progress"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -112,6 +138,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back to Menu"
+        android:textSize="21sp"
+        android:fontFamily="@font/teko"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="6dp" />
 

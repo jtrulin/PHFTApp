@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.mpandroidchart)
     implementation(libs.play.services.ads)
 
+    implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.27")
+
 
 
 }
