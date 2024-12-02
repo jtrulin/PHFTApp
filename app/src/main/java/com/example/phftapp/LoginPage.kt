@@ -43,8 +43,10 @@ class LoginPage : AppCompatActivity() {
                 if (userExits) {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainMenu::class.java)
+                    intent.putExtra("email", email)
+                    intent.putExtra("password", password)
+                    intent.putExtra("isGuest", false) // Ensure this is set to false
                     startActivity(intent)
-                    //finish()
                 } else {
                     Toast.makeText(this, "User Not Found!", Toast.LENGTH_SHORT).show()
                 }
@@ -52,11 +54,13 @@ class LoginPage : AppCompatActivity() {
                 // run when login is successful
                 //Toast.makeText(this, "hey successful!", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, MainMenu::class.java)
+                /*val intent = Intent(this, MainMenu::class.java)
                 val isGuest = intent.getBooleanExtra(
                     "isGuest",
                     false
                 ) // sets a flag to show a user is a guest
+                */
+
             }
         }
     }

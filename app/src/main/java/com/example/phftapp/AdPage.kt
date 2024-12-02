@@ -15,7 +15,7 @@ import com.google.android.gms.ads.MobileAds
 
 
 class AdPage : AppCompatActivity() {
-    lateinit var myAd : AdView
+    private lateinit var myAd : AdView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,9 +40,14 @@ class AdPage : AppCompatActivity() {
             if(activityType == "running"){
                 val intent = Intent(this, RunningActivity::class.java)
                 startActivity(intent)
-            }
-            else if(activityType == "weightlifting"){
+            } else if(activityType == "weightlifting"){
                 val intent = Intent(this, LiftingActivity::class.java)
+                startActivity(intent)
+            } else if(activityType == "walking"){
+                val intent = Intent(this, WalkingActivity::class.java)
+                startActivity(intent)
+            } else if(activityType == "cycling"){
+                val intent = Intent(this, CyclingActivity::class.java)
                 startActivity(intent)
             }
 

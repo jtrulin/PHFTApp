@@ -97,11 +97,7 @@ class LiftingActivity : AppCompatActivity() {
 
             val intent = Intent(this, TrackWeightlifting::class.java)
             intent.putExtra("weight", weightValue)
-            Toast.makeText(
-                this,
-                "in the chart",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(this, "in the chart", Toast.LENGTH_SHORT).show()
             startActivity(intent)
         }
 

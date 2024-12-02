@@ -1,5 +1,7 @@
 package com.example.phftapp
 
+// FOR RUNNING ACTIVITY
+
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle

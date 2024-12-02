@@ -1,5 +1,6 @@
 package com.example.phftapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.SystemClock
@@ -12,15 +13,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class RunningActivity : AppCompatActivity() {
+class WalkingActivity : AppCompatActivity() {
 
     private var timeWhenStopped: Long = 0  // Track elapsed time when paused
     private var isRunning = false
+    private var steps = 0
 
+
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_running)
+        setContentView(R.layout.activity_walking)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -37,14 +41,13 @@ class RunningActivity : AppCompatActivity() {
         // Results
         var displayResult = findViewById<TextView>(R.id.TotalTimeDisplay)
         var displayDistance = findViewById<TextView>(R.id.TotalDistanceDisplayed)
-        var displayPace = findViewById<TextView>(R.id.TotalPaceDisplayed)
         var displayCalories = findViewById<TextView>(R.id.TotalCaloriesDisplayed)
         val progressButton = findViewById<Button>(R.id.chartProgress)
 
         var caloriesBurned = 0.0f
 
         val user = User()  // User instance, replace with actual user data later with registration
-        val activityContents = ActivityContents(activityType = "running")
+        val activityContents = ActivityContents(activityType = "walking")
 
         startButton.setOnClickListener {
             if (!isRunning) {
@@ -55,7 +58,6 @@ class RunningActivity : AppCompatActivity() {
                 stopButton.text = "Stop"  // Change stop button to "Reset"
                 displayResult.text= ""
                 displayDistance.text = ""
-                displayPace.text = ""
                 displayCalories.text =""
 
 
@@ -71,10 +73,7 @@ class RunningActivity : AppCompatActivity() {
                 startButton.text = "Resume"  // Update start button to "Resume"
                 displayResult.text= ""
                 displayDistance.text = ""
-                displayPace.text = ""
                 displayCalories.text =""
-
-
             }
             else {
                 // Reset the chronometer
@@ -84,7 +83,6 @@ class RunningActivity : AppCompatActivity() {
                 startButton.text = "Start"  // reverts start button to "Start"
                 displayResult.text= ""
                 displayDistance.text = ""
-                displayPace.text = ""
                 displayCalories.text =""
 
             }
@@ -93,24 +91,23 @@ class RunningActivity : AppCompatActivity() {
 
         doneButton.setOnClickListener {
             val elapsedTimeInMilliseconds = timeWhenStopped
+
             // milliseconds to seconds, but simulating it as minutes for users
             val elapsedTimeInMinutes= elapsedTimeInMilliseconds / 1000
             Toast.makeText(this, "Total Time: $elapsedTimeInMinutes", Toast.LENGTH_SHORT).show()
 
-            // every minute, 160 meters are ran, divided by 16000 for 1 mile
-            // for example, do 25 seconds for 2 miles (on average)
-            val totalDistance: Double = (elapsedTimeInMinutes * 160.0) / 1600.0
+            val strideLength = user.height * 0.415f // Average stride length
+            val speedMetersPerSecond = 1.3f // Average walking speed
+            val totalDistance = elapsedTimeInMinutes * speedMetersPerSecond  // Distance in meters
+            steps = (totalDistance / strideLength).toInt()
 
-            // formula for pace
-            val totalPace: Double = elapsedTimeInMinutes/totalDistance
 
             // passing User info to get and save calories, timer in ActivityContents is updated
             activityContents.timer = elapsedTimeInMinutes.toFloat()
-            caloriesBurned = activityContents.trackCalories(user) //uses the specific MET to calculate
+            caloriesBurned = activityContents.trackCalories(user)
 
             displayResult.text = "Total Time: $elapsedTimeInMinutes minutes"
-            displayDistance.text = "Total Distance: $totalDistance miles"
-            displayPace.text = "Total Pace: $totalPace minutes per mile"
+            displayDistance.text = "Total Steps: $totalDistance"
             displayCalories.text = "Calories Burned: $caloriesBurned"
         }
 
