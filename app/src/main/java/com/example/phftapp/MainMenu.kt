@@ -104,7 +104,12 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+        val socialmediabutton = findViewById<ImageButton>(R.id.socButton)
 
+        socialmediabutton.setOnClickListener(){
+            val intent = Intent(this, socialmedia::class.java)
+            startActivity(intent)
+        }
 
 
     }
