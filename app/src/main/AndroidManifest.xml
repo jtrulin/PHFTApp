@@ -18,6 +18,9 @@
             android:name=".YogaActivity"
             android:exported="false" />
         <activity
+            android:name=".hiit"
+            android:exported="false" />
+        <activity
             android:name=".WalkingActivity"
             android:exported="false" />
         <activity

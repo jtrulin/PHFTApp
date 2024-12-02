@@ -11,14 +11,27 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class PaymentValidation : AppCompatActivity() {
+
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_payment_validation)
+
+        databaseHelper = DatabaseHelper(this)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Retrieve userId passed from MainMenu
+        val userId = intent.getIntExtra("userId", -1)
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if no userId is found
         }
 
         val cardNumber = findViewById<EditText>(R.id.enterCardNumber)
@@ -26,12 +39,32 @@ class PaymentValidation : AppCompatActivity() {
         val cardMonth = findViewById<EditText>(R.id.enterMonth)
         val cardYear = findViewById<EditText>(R.id.enterYear)
         val payButton = findViewById<Button>(R.id.payButton)
+
+
         payButton.setOnClickListener {
             if (validateCard(cardNumber, cardCvv, cardMonth, cardYear)) {
-                val intent = Intent(this, PaymentSuccess::class.java)
-                startActivity(intent)
-            }
+                val cNumber = cardNumber.text.toString()
+                val cvv = cardCvv.text.toString().toInt()
+                val month = cardMonth.text.toString().toInt()
+                val year = cardYear.text.toString().toInt()
 
+                println("Inserting payment: $cNumber, CVV: $cvv, Month: $month, Year: $year, UserID: $userId")
+
+
+                //val user = User(name, age, id, email) // checking if class is working (it does)
+                val insertedId =
+                    databaseHelper.insertCard(Payment(cNumber, cvv, month, year, userId))
+
+                if (insertedId == -1L) {
+                    println("Failed to insert payment.")
+                    Toast.makeText(this, "Payment failed to process!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Payment successfull!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, PaymentSuccess::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+            }
         }
     }
 
@@ -58,5 +91,6 @@ private fun validateCard(cardNumber: EditText, cardCVV: EditText, cardMonth: Edi
     } else {
         return true
     }
+    //just to push
 }
 }

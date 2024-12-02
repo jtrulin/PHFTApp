@@ -39,14 +39,20 @@ class LoginPage : AppCompatActivity() {
                 val email = validEmail.text.toString()
                 val password = validPassword.text.toString()
 
-                val userExits = databaseHelper.readUser(email, password)
-                if (userExits) {
-                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(this, MainMenu::class.java)
-                    intent.putExtra("email", email)
-                    intent.putExtra("password", password)
-                    intent.putExtra("isGuest", false) // Ensure this is set to false
-                    startActivity(intent)
+                val userExists = databaseHelper.readUser(email, password)
+                if (userExists) {
+                    val userId = databaseHelper.getUserId(email, password) // Fetch the user ID
+                    if (userId != null) {
+                        Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, MainMenu::class.java)
+                        intent.putExtra("userId", userId) // Pass userId to MainMenu
+                        intent.putExtra("email", email)
+                        intent.putExtra("password", password)
+                        intent.putExtra("isGuest", false) // Ensure this is set to false
+                        startActivity(intent)
+                    } else {
+                        Toast.makeText(this, "User ID not found!", Toast.LENGTH_SHORT).show()
+                    }
                 } else {
                     Toast.makeText(this, "User Not Found!", Toast.LENGTH_SHORT).show()
                 }
@@ -61,9 +67,11 @@ class LoginPage : AppCompatActivity() {
                 ) // sets a flag to show a user is a guest
                 */
 
+
             }
         }
     }
+
 
     private fun validateCredentials(validEmail: EditText, validPassword: EditText): Boolean { // validEmail and validPassword are of type "EditText"
         val email = validEmail.text.toString()
@@ -85,5 +93,6 @@ class LoginPage : AppCompatActivity() {
         else {
             return true // returns true only if conditions are met
         }
+        //just to push
     }
 }
