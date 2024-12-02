@@ -10,4 +10,6 @@
     <string name="register">Register</string>
     <string name="workout_button">Workout button</string>
     <string name="heartbeat_icon" />
+    <string name="goals">Goals</string>
+    <string name="logout">Logout</string>
 </resources>
