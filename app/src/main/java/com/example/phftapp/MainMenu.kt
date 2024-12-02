@@ -73,12 +73,12 @@ class MainMenu : AppCompatActivity() {
 
         val userId = intent.getIntExtra("userId", -1) // Retrieve userId from LoginPage
 
-        /*
+
         if (userId == -1) {
             Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
-            finish() // Exit if userId is not valid
+           // finish() // Exit if userId is not valid
         }
-        */
+
 
 
 
