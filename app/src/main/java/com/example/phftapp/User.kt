@@ -10,11 +10,17 @@ data class User(
     val email: String = "rafe@gmail.com",
     val password: String = "rafe@123",
     val securityAnswer: String = "uta"
-) {
+)
 
-    //val goals: String = ""
+data class Payment(
+    val cardNumber: String,
+    val cvv: Int,
+    val month: Int,
+    val year: Int,
+    val userId: Int
+)
 
-    //fun readInfo(){
-       // println("Hello $name! You are $age years old, with a weight of $weight and is $height tall!")
-    //}
-}
+data class ProgressReport(
+    val caloriesBurned: Double,
+    val userId: Int
+)

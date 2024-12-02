@@ -15,10 +15,28 @@
         android:scaleType="centerCrop"
         android:src="@drawable/background" />
 
+
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#B3000000" />
+        android:background="#B3000000"
+        tools:layout_editor_absoluteX="-64dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        android:id="@+id/tvUserInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/cyan"
+        android:gravity="start"
+        android:text="Welcome, User\nID: 0"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/wrkButton"
@@ -73,8 +91,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="10dp" />
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="5dp" />
 
     <Button
         android:id="@+id/goalButton"

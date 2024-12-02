@@ -98,9 +98,6 @@ class RegisterPage : AppCompatActivity() {
         }
 
 
-
-
-
         registerButton.setOnClickListener {
             if (validateCredentials(userEmail, userPassword, userID)) {
 

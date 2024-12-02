@@ -3,6 +3,7 @@ package com.example.phftapp
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -26,6 +27,33 @@ class MainMenu : AppCompatActivity() {
 
         databaseHelper = DatabaseHelper(this)
 
+
+        // Get email and password from intent
+        val email = intent.getStringExtra("email") ?: ""
+        val password = intent.getStringExtra("password") ?: ""
+        val isGuest = intent.getBooleanExtra("isGuest", false)
+
+        // Reference the TextView for user info
+        val userInfoTextView = findViewById<TextView>(R.id.tvUserInfo)
+
+        if (isGuest) {
+            // Display guest message if the user is a guest
+            userInfoTextView.text = "Welcome, Guest"
+        } else {
+            // Fetch username and user ID from the database
+            val userName = databaseHelper.getUserName(email, password)
+            val userId = databaseHelper.getUserId(email, password)
+
+            if (userName != null && userId != null) {
+                // Display the welcome message with username and ID
+                userInfoTextView.text = "Welcome, $userName\nID: $userId"
+            } else {
+                // Handle the case where user data couldn't be fetched
+                userInfoTextView.text = "Welcome, User"
+                Toast.makeText(this, "Failed to fetch user information.", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         // Buttons
         val activityButton = findViewById<ImageButton>(R.id.wrkButton)
         val socialButton = findViewById<ImageButton>(R.id.socButton)
@@ -34,19 +62,28 @@ class MainMenu : AppCompatActivity() {
         val goalsButton = findViewById<Button>(R.id.goalButton)
 
         // knows if user is logged in or if it's a guest, use later to limit functionalities
-        val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
-                                                                                // (passed in LoginPage.kt for logged in user and MainMenu.kt for guest
+        //val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
+        // (passed in LoginPage.kt for logged in user and MainMenu.kt for guest
 
         if (isGuest) {
             Toast.makeText(this, "Welcome, Guest! Limited features available.", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
         }
+        //just added
+        val userId = intent.getIntExtra("userId", -1) // Retrieve userId from LoginPage
+
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if userId is not valid
+        }
 
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
-            if(isGuest){
+            if (isGuest) {
                 intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId with correct key casing
             }
             startActivity(intent)
         }
@@ -54,24 +91,12 @@ class MainMenu : AppCompatActivity() {
 
         goalsButton.setOnClickListener(){
             val intent = Intent(this, GoalsPage::class.java)
-
-            if(isGuest){
+            if (isGuest) {
                 intent.putExtra("isGuest", true)
-                //val intent = Intent(this, GoalsPage::class.java)
-                //startActivity(intent)
-
-            } else{
-
-                val email = intent.getStringExtra("email") ?: ""
-                val password = intent.getStringExtra("password") ?: ""
-
-                if (databaseHelper.readUser(email, password)) {
-                    val userId = databaseHelper.getUserId(email, password)
-                    if (userId != null) {
-                        intent.putExtra("userId", userId.toString())
-                    }
-                }
-
+            } else {
+                intent.putExtra("userId", userId) // Pass userId
+                intent.putExtra("email", email) // Pass email
+                intent.putExtra("password", password) // Pass password
             }
             startActivity(intent)
         }
@@ -95,8 +120,16 @@ class MainMenu : AppCompatActivity() {
         val paymentValidationButton = findViewById<ImageButton>(R.id.paymentValidationButton)
 
         paymentValidationButton.setOnClickListener(){
-            val intent = Intent(this, PaymentValidation::class.java)
-            startActivity(intent)
+            if(isGuest){
+                Toast.makeText(this, "Please Register First!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, RegisterPage::class.java)
+                startActivity(intent)
+            } else{
+                val intent = Intent(this, PaymentValidation::class.java)
+                intent.putExtra("userId", userId)
+                startActivity(intent)
+            }
+
         }
 
         logoutButton.setOnClickListener(){

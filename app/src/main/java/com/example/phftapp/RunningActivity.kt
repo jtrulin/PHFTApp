@@ -17,6 +17,8 @@ class RunningActivity : AppCompatActivity() {
     private var timeWhenStopped: Long = 0  // Track elapsed time when paused
     private var isRunning = false
 
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,6 +27,13 @@ class RunningActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+
+        // Retrieve userId passed from MainMenu
+        val userId = intent.getIntExtra("userId", -1)
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if no userId is found
         }
 
         // Buttons
@@ -112,6 +121,22 @@ class RunningActivity : AppCompatActivity() {
             displayDistance.text = "Total Distance: $totalDistance miles"
             displayPace.text = "Total Pace: $totalPace minutes per mile"
             displayCalories.text = "Calories Burned: $caloriesBurned"
+
+
+            // Add calories burned to the progressReport database
+            val databaseHelper = DatabaseHelper(this)
+            //val userId = intent.getIntExtra("userId", -1) // Ensure userId is passed to this activity
+            if (userId != -1) {
+                val progressReport = ProgressReport(caloriesBurned = caloriesBurned.toDouble(), userId = userId)
+                val insertedId = databaseHelper.insertProgress(progressReport)
+                if (insertedId != -1L) {
+                    Toast.makeText(this, "Progress saved successfully!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Failed to save progress.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "User not logged in. Progress not saved.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         progressButton.setOnClickListener{
