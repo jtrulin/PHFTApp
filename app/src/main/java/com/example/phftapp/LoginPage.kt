@@ -31,7 +31,12 @@ class LoginPage : AppCompatActivity() {
         val validEmail = findViewById<EditText>(R.id.editTextTextEmailAddress)
         val validPassword = findViewById<EditText>(R.id.editTextTextPassword)
         val submitButton = findViewById<Button>(R.id.sButton)
+        val backButton = findViewById<Button>(R.id.backButton)
 
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
        submitButton.setOnClickListener {
             if(validateCredentials(validEmail,validPassword)) {

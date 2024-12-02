@@ -43,8 +43,12 @@ class LiftingActivity : AppCompatActivity() {
         val startButton = findViewById<Button>(R.id.Start)
         val stopButton = findViewById<Button>(R.id.Stop)
         val progressButton = findViewById<Button>(R.id.chartProgress)
-        val menuButton = findViewById<Button>(R.id.menu)
-        
+        val backButton = findViewById<Button>(R.id.backButton)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, ChooseActivity::class.java)
+            startActivity(intent)
+        }
 
         // Spinner
         val spinnerID = findViewById<Spinner>(R.id.TypeOfLift)
@@ -106,11 +110,6 @@ class LiftingActivity : AppCompatActivity() {
             val intent = Intent(this, TrackWeightlifting::class.java)
             intent.putExtra("weight", weightValue)
             Toast.makeText(this, "in the chart", Toast.LENGTH_SHORT).show()
-            startActivity(intent)
-        }
-
-        menuButton.setOnClickListener {
-            val intent = Intent(this, ChooseActivity::class.java)
             startActivity(intent)
         }
 

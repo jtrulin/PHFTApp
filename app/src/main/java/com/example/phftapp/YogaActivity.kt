@@ -34,6 +34,13 @@ class YogaActivity : AppCompatActivity() {
             insets
         }
 
+        val backButton = findViewById<Button>(R.id.backButton)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, ChooseActivity::class.java)
+            startActivity(intent)
+        }
+
         // Buttons
         val chrono = findViewById<Chronometer>(R.id.chronometer)
         val startButton = findViewById<Button>(R.id.Start)

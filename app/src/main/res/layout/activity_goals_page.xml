@@ -7,6 +7,17 @@
     android:layout_height="match_parent"
     tools:context=".GoalsPage">
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="10dp" />
+
     <EditText
         android:id="@+id/goalInput"
         android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.example.phftapp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Button
@@ -31,6 +32,12 @@ class GoalsPage : AppCompatActivity() {
         val goalInput = findViewById<EditText>(R.id.goalInput)
         val saveGoalButton = findViewById<Button>(R.id.saveGoalButton)
         val goalListView = findViewById<ListView>(R.id.goalListView)
+        val backButton = findViewById<Button>(R.id.backButton)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
 
         //Passes in if this is a Guest on the page
         val isGuest = intent.getBooleanExtra("isGuest", false)

@@ -45,6 +45,7 @@ class RegisterPage : AppCompatActivity() {
         val userPassword = findViewById<EditText>(R.id.regPassword)
         val userSecurityAnswer = findViewById<EditText>(R.id.enterAnswer)
         val registerButton = findViewById<Button>(R.id.rButton)
+        val backButton = findViewById<Button>(R.id.backButton)
 
 
         val newSpinner = findViewById<Spinner>(R.id.newSpinner)
@@ -98,6 +99,11 @@ class RegisterPage : AppCompatActivity() {
         }
 
 
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         registerButton.setOnClickListener {
             if (validateCredentials(userEmail, userPassword, userID)) {
 
@@ -123,7 +129,6 @@ class RegisterPage : AppCompatActivity() {
                     Toast.makeText(this, "User registered successfully!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, LoginPage::class.java)
                     startActivity(intent)
-                    finish()
                 }
             }
         }

@@ -38,6 +38,12 @@ class WalkingActivity : AppCompatActivity() {
         val stopButton = findViewById<Button>(R.id.Stop)
         val doneButton = findViewById<Button>(R.id.Done)
         val menuButton = findViewById<Button>(R.id.menu)
+        val backButton = findViewById<Button>(R.id.backButton)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, ChooseActivity::class.java)
+            startActivity(intent)
+        }
 
         // Results
         val displayResult = findViewById<TextView>(R.id.TotalTimeDisplay)

@@ -39,7 +39,12 @@ class PaymentValidation : AppCompatActivity() {
         val cardMonth = findViewById<EditText>(R.id.enterMonth)
         val cardYear = findViewById<EditText>(R.id.enterYear)
         val payButton = findViewById<Button>(R.id.payButton)
+        val backButton = findViewById<Button>(R.id.backButton)
 
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
 
         payButton.setOnClickListener {
             if (validateCard(cardNumber, cardCvv, cardMonth, cardYear)) {
@@ -65,6 +70,7 @@ class PaymentValidation : AppCompatActivity() {
                     finish()
                 }
             }
+
         }
     }
 
@@ -91,6 +97,5 @@ private fun validateCard(cardNumber: EditText, cardCVV: EditText, cardMonth: Edi
     } else {
         return true
     }
-    //just to push
 }
 }

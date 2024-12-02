@@ -45,6 +45,12 @@ class ChooseActivity : AppCompatActivity() {
         val liftButton = findViewById<Button>(R.id.weightliftButton)
         val Hiitbutton = findViewById<Button>(R.id.hiitButton)
 
+        val backButton = findViewById<Button>(R.id.backButton)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
 
         runButton.setOnClickListener {
             if (isGuest) {

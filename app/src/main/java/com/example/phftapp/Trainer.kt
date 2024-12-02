@@ -35,6 +35,12 @@ class Trainer : AppCompatActivity() {
         val ratingBar = findViewById<RatingBar>(R.id.ratingBar1)
         val overallRatingText = findViewById<TextView>(R.id.overall_rating)
         val messages = findViewById<Button>(R.id.message_button)
+        val backButton = findViewById<Button>(R.id.backButton)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
 
         // Display initial overall rating
         updateOverallRatingText(overallRatingText)

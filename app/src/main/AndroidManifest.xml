@@ -33,6 +33,9 @@
             android:name=".socialmedia"
             android:exported="false" />
         <activity
+            android:name=".GuestPage"
+            android:exported="false" />
+        <activity
             android:name=".TrackWeightlifting"
             android:exported="false" />
         <activity
@@ -64,9 +67,6 @@
             android:exported="false" />
         <activity
             android:name=".PaymentValidation"
-            android:exported="false" />
-        <activity
-            android:name=".GuestPage"
             android:exported="false" />
         <activity
             android:name=".ChooseActivity"

@@ -55,6 +55,17 @@
         app:layout_constraintStart_toEndOf="@+id/stopButton"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="10dp" />
+
     <Spinner
         android:id="@+id/yogaPoseSpinner"
         android:layout_width="0dp"
