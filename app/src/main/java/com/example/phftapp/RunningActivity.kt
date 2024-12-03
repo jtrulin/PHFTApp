@@ -31,10 +31,12 @@ class RunningActivity : AppCompatActivity() {
 
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
-        if (userId == -1) {
+        /*if (userId == -1) {
             Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
             finish() // Exit if no userId is found
         }
+        */
+
 
         // Buttons
         val chrono = findViewById<Chronometer>(R.id.chronometer)
@@ -66,7 +68,6 @@ class RunningActivity : AppCompatActivity() {
                 displayDistance.text = ""
                 displayPace.text = ""
                 displayCalories.text =""
-
 
             }
         }
@@ -154,7 +155,5 @@ class RunningActivity : AppCompatActivity() {
             val intent = Intent(this, ChooseActivity::class.java)
             startActivity(intent)
         }
-        //just to push
-
     }
 }

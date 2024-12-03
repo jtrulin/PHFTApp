@@ -46,6 +46,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-//just to push
     }
 }

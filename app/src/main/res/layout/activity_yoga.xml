@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/startButton"
+        android:id="@+id/Start"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Start"
@@ -29,10 +29,10 @@
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/chronometer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/stopButton" />
+        app:layout_constraintEnd_toStartOf="@+id/Stop" />
 
     <Button
-        android:id="@+id/stopButton"
+        android:id="@+id/Stop"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Stop"
@@ -40,11 +40,11 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/chronometer"
-        app:layout_constraintStart_toEndOf="@+id/startButton"
-        app:layout_constraintEnd_toStartOf="@+id/doneButton" />
+        app:layout_constraintStart_toEndOf="@+id/Start"
+        app:layout_constraintEnd_toStartOf="@+id/Done" />
 
     <Button
-        android:id="@+id/doneButton"
+        android:id="@+id/Done"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Done"
@@ -52,7 +52,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/chronometer"
-        app:layout_constraintStart_toEndOf="@+id/stopButton"
+        app:layout_constraintStart_toEndOf="@+id/Stop"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
@@ -66,6 +66,21 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="10dp" />
 
+    <Button
+        android:id="@+id/chartProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
+        android:layout_marginBottom="16dp"
+        android:text="Chart Progress"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Done" />
+
     <Spinner
         android:id="@+id/yogaPoseSpinner"
         android:layout_width="0dp"
@@ -74,7 +89,7 @@
         android:theme="@style/Widget.AppCompat.Spinner"
         android:backgroundTint="@color/white"
         android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@+id/doneButton"
+        app:layout_constraintTop_toBottomOf="@+id/Done"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

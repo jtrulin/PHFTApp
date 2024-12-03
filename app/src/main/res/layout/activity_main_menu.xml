@@ -24,16 +24,17 @@
         android:id="@+id/tvUserInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/cyan"
-        android:gravity="start"
+        android:gravity="center"
         android:text="Welcome, User\nID: 0"
+        android:fontFamily="@font/teko"
         android:textColor="@color/white"
-        android:textSize="18sp"
+        android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageButton
         android:id="@+id/wrkButton"
@@ -88,6 +89,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="10dp" />
 
@@ -96,6 +100,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Goals"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         tools:layout_editor_absoluteY="8dp" />
 

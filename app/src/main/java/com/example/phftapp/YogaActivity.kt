@@ -46,7 +46,6 @@ class YogaActivity : AppCompatActivity() {
         val startButton = findViewById<Button>(R.id.Start)
         val stopButton = findViewById<Button>(R.id.Stop)
         val doneButton = findViewById<Button>(R.id.Done)
-        val menuButton = findViewById<Button>(R.id.menu)
         val progressButton = findViewById<Button>(R.id.chartProgress)
 
 
@@ -118,11 +117,6 @@ class YogaActivity : AppCompatActivity() {
 
         }
 
-        menuButton.setOnClickListener {
-            val intent = Intent(this, ChooseActivity::class.java)
-            startActivity(intent)
-        }
-
         progressButton.setOnClickListener {
             val intent = Intent(this, Tracking::class.java)
             intent.putExtra("calories", caloriesBurned)
@@ -133,7 +127,6 @@ class YogaActivity : AppCompatActivity() {
             ).show()
             startActivity(intent)
         }
-
 
         // Custom ArrayAdapter for the Spinner
         val adapter = object : ArrayAdapter<String>(this, R.layout.spinner_item, yogaTypes) {

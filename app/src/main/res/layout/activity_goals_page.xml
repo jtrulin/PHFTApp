@@ -24,6 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="600dp"
         android:hint="Enter your goal"
+        android:fontFamily="@font/teko"
+        android:backgroundTint="@color/cyan"
+        android:textColorHint="@color/white"
+        android:textSize="21sp"
         android:inputType="text"
         android:padding="10dp"
         app:layout_constraintTop_toTopOf="parent" />
@@ -34,6 +38,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="764dp"
         android:text="Save Goal"
+        android:fontFamily="@font/teko"
+        android:textSize="21sp"
+        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@+id/goalListView" />
 
     <ListView
