@@ -23,6 +23,13 @@ class ChooseActivity : AppCompatActivity() {
             insets
         }
 
+        val backToMenuButton = findViewById<Button>(R.id.backToMenuButton)
+        backToMenuButton.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java) // Replace `MainMenuActivity` with the actual main menu activity class name
+            startActivity(intent)
+            finish() // Optional: Closes the current activity
+        }
+
         val heartbeatIcon = findViewById<ImageView>(R.id.heartbeatIcon)
         val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse)
         heartbeatIcon.startAnimation(pulseAnimation)
