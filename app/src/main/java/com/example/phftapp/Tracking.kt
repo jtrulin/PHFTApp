@@ -56,6 +56,5 @@ class Tracking : AppCompatActivity() {
         barChar.data = barData
         barDataSet.valueTextColor = Color.WHITE
         barDataSet.valueTextSize= 15f
-
     }
 }

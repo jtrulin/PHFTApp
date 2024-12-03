@@ -33,11 +33,6 @@ class WalkingActivity : AppCompatActivity() {
         }
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
-        /*
-        if (userId == -1) {
-            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
-            finish() // Exit if no userId is found
-        }*/
         val isGuest = intent.getBooleanExtra("isGuest", false)
 
         // Buttons
@@ -46,17 +41,7 @@ class WalkingActivity : AppCompatActivity() {
         val stopButton = findViewById<Button>(R.id.Stop)
         val doneButton = findViewById<Button>(R.id.Done)
         val menuButton = findViewById<Button>(R.id.menu)
-        val backButton = findViewById<Button>(R.id.backButton)
 
-        backButton.setOnClickListener {
-            val intent = Intent(this, ChooseActivity::class.java)
-            if(isGuest){
-                intent.putExtra("isGuest", true)
-            } else {
-                intent.putExtra("userId", userId) // Pass userId with correct key casing
-            }
-            startActivity(intent)
-        }
 
         // Results
         val displayResult = findViewById<TextView>(R.id.TotalTimeDisplay)
@@ -172,10 +157,16 @@ class WalkingActivity : AppCompatActivity() {
             ).show()
             startActivity(intent)
         }
-
-        menuButton.setOnClickListener {
+        menuButton.setOnClickListener{
             val intent = Intent(this, ChooseActivity::class.java)
+            //val userId = intent.getIntExtra("userId", -1) // Retrieve the userId passed to RunningActivity
+            if (isGuest) {
+                intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId back to ChooseActivity
+            }
             startActivity(intent)
+            finish() // Close RunningActivity
         }
     }
 }

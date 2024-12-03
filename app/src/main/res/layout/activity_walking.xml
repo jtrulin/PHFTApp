@@ -7,16 +7,7 @@
     android:orientation="vertical"
     tools:context=".WalkingActivity">
 
-    <Button
-        android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:fontFamily="@font/teko"
-        android:textSize="21sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="10dp" />
+
 
     <Chronometer
         android:id="@+id/chronometer"
@@ -143,12 +134,13 @@
         android:id="@+id/menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
         android:text="Back to Menu"
         android:textSize="21sp"
         android:fontFamily="@font/teko"
         android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="6dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
