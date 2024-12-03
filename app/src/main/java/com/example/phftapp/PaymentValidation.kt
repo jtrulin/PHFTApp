@@ -67,7 +67,6 @@ class PaymentValidation : AppCompatActivity() {
                     Toast.makeText(this, "Payment successfull!", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, PaymentSuccess::class.java)
                     startActivity(intent)
-                    finish()
                 }
             }
 
