@@ -2,6 +2,7 @@ package com.example.phftapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -17,6 +18,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class YogaActivity : AppCompatActivity() {
+    private var timeWhenStopped: Long = 0
+    private var isRunning = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -60,6 +64,60 @@ class YogaActivity : AppCompatActivity() {
             "High Lunge",
             "Triangle Pose"
         )
+
+        var caloriesBurned = 0.0f
+
+        val user = User()
+        val activityContents = ActivityContents(activityType = "yoga")
+
+        startButton.setOnClickListener{
+            if(!isRunning){
+                // Start or resume the chonometer
+                chrono.base = SystemClock.elapsedRealtime() - timeWhenStopped
+                chrono.start()
+                isRunning = true
+
+                stopButton.text = "Stop"
+            }
+        }
+
+        stopButton.setOnClickListener{
+            if(isRunning && stopButton.text == "Stop"){
+                // Pause the chronometer
+                timeWhenStopped = SystemClock.elapsedRealtime() - chrono.base
+                chrono.stop()
+                isRunning = false
+
+                stopButton.text = "Reset" // Changes Stop to Reset
+                startButton.text = "Resume" // Update Start to Resum
+            } else{
+                // Reset the chronometer
+                chrono.base = SystemClock.elapsedRealtime()
+                timeWhenStopped = 0 // Resets time
+                stopButton.text = "Stop"
+                startButton.text = "Start"
+                caloriesText.text = "Calories Burned: "
+            }
+        }
+
+        doneButton.setOnClickListener{
+            val elapsedTimeInMilliseconds = timeWhenStopped
+
+            // Milliseconds to seconds, but simulating it as minutes for users
+            var elapseTimeInMinutes = elapsedTimeInMilliseconds / 1000
+
+            //Passing User info to get and save calories, timer in ActivityContents is updated
+            activityContents.timer = elapseTimeInMinutes.toFloat()
+            caloriesBurned = activityContents.trackCalories(user)
+
+            caloriesText.text = "Calories Burned: $caloriesBurned cal"
+        }
+
+        progressButton.setOnClickListener{
+            val intent = Intent(this, Tracking::class.java)
+            intent.putExtra("calories", caloriesBurned)
+            startActivity(intent)
+        }
 
         // Custom ArrayAdapter for the Spinner
         val adapter = object : ArrayAdapter<String>(this, R.layout.spinner_item, yogaPoses) {
