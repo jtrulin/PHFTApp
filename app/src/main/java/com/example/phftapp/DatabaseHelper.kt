@@ -127,4 +127,17 @@ class DatabaseHelper(private val context: Context) :
         return userId
     }
 
+    fun getUserNameById(userId: Int): String? {
+        val db = readableDatabase
+        val query = "SELECT name FROM users WHERE id = ?"
+        val cursor = db.rawQuery(query, arrayOf(userId.toString()))
+
+        var userName: String? = null
+        if (cursor.moveToFirst()) {
+            userName = cursor.getString(cursor.getColumnIndexOrThrow("name"))
+        }
+        cursor.close()
+        return userName
+    }
+
 }

@@ -28,31 +28,15 @@ class MainMenu : AppCompatActivity() {
         databaseHelper = DatabaseHelper(this)
 
 
-        // Get email and password from intent
+        // Retrieve data from intent
         val email = intent.getStringExtra("email") ?: ""
         val password = intent.getStringExtra("password") ?: ""
         val isGuest = intent.getBooleanExtra("isGuest", false)
+        val userId = intent.getIntExtra("userId", -1) // Default to -1 if no userId is provided
 
         // Reference the TextView for user info
         val userInfoTextView = findViewById<TextView>(R.id.tvUserInfo)
 
-        if (isGuest) {
-            // Display guest message if the user is a guest
-            userInfoTextView.text = "Welcome, Guest"
-        } else {
-            // Fetch username and user ID from the database
-            val userName = databaseHelper.getUserName(email, password)
-            val userId = databaseHelper.getUserId(email, password)
-
-            if (userName != null && userId != null) {
-                // Display the welcome message with username and ID
-                userInfoTextView.text = "Welcome, $userName\nID: $userId"
-            } else {
-                // Handle the case where user data couldn't be fetched
-                userInfoTextView.text = "Welcome, User"
-                Toast.makeText(this, "Failed to fetch user information.", Toast.LENGTH_SHORT).show()
-            }
-        }
 
         // Buttons
         val activityButton = findViewById<ImageButton>(R.id.wrkButton)
@@ -65,19 +49,26 @@ class MainMenu : AppCompatActivity() {
         //val isGuest = intent.getBooleanExtra("isGuest", false) // retrieves flag, changes to true if a user is a guest
         // (passed in LoginPage.kt for logged in user and MainMenu.kt for guest
 
+
+
+        // Handle guest users
         if (isGuest) {
+            userInfoTextView.text = "Welcome, Guest"
             Toast.makeText(this, "Welcome, Guest! Limited features available.", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(this, "Welcome, User!", Toast.LENGTH_SHORT).show()
+            if (userId == -1) {
+                Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+                finish() // Exit if userId is invalid
+            } else {
+                val userName = databaseHelper.getUserNameById(userId)
+                if (userName != null) {
+                    userInfoTextView.text = "Welcome, $userName\nID: $userId"
+                } else {
+                    userInfoTextView.text = "Welcome, User"
+                    Toast.makeText(this, "Failed to fetch user information.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-        //just added
-        val userId = intent.getIntExtra("userId", -1) // Retrieve userId from LoginPage
-
-        /*
-        if (userId == -1) {
-            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
-            finish() // Exit if userId is not valid
-        }*/
 
         activityButton.setOnClickListener(){
             val intent = Intent(this, ChooseActivity::class.java)
@@ -143,7 +134,5 @@ class MainMenu : AppCompatActivity() {
             val intent = Intent(this, socialmedia::class.java)
             startActivity(intent)
         }
-
-    //just to push
     }
 }
