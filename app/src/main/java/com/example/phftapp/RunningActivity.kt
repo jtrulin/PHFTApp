@@ -11,13 +11,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import pl.droidsonroids.gif.GifDrawable
+import pl.droidsonroids.gif.GifImageView
 
 class RunningActivity : AppCompatActivity() {
 
     private var timeWhenStopped: Long = 0  // Track elapsed time when paused
     private var isRunning = false
-
-    private lateinit var databaseHelper: DatabaseHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +45,18 @@ class RunningActivity : AppCompatActivity() {
         val doneButton = findViewById<Button>(R.id.Done)
         val menuButton = findViewById<Button>(R.id.menu)
 
-        // Results
-        var displayResult = findViewById<TextView>(R.id.TotalTimeDisplay)
-        var displayDistance = findViewById<TextView>(R.id.TotalDistanceDisplayed)
-        var displayPace = findViewById<TextView>(R.id.TotalPaceDisplayed)
-        var displayCalories = findViewById<TextView>(R.id.TotalCaloriesDisplayed)
-        val progressButton = findViewById<Button>(R.id.chartProgress)
+        val displayResult = findViewById<TextView>(R.id.TotalTimeDisplay)
+        val displayDistance = findViewById<TextView>(R.id.TotalDistanceDisplayed)
+        val displayPace = findViewById<TextView>(R.id.TotalPaceDisplayed)
+        val displayCalories = findViewById<TextView>(R.id.TotalCaloriesDisplayed)
+
+        // GifImageView and its Drawable
+        val runningGif = findViewById<GifImageView>(R.id.runningGif)
+        val gifDrawable = runningGif.drawable as GifDrawable
+        gifDrawable.pause()
 
         var caloriesBurned = 0.0f
-
-        val user = User()  // User instance, replace with actual user data later with registration
+        val user = User()  // Replace with actual user data later
         val activityContents = ActivityContents(activityType = "running")
 
         startButton.setOnClickListener {
@@ -63,61 +65,51 @@ class RunningActivity : AppCompatActivity() {
                 chrono.base = SystemClock.elapsedRealtime() - timeWhenStopped
                 chrono.start()
                 isRunning = true
+                gifDrawable.start()
                 stopButton.text = "Stop"  // Change stop button to "Reset"
-                displayResult.text= ""
+                displayResult.text = ""
                 displayDistance.text = ""
                 displayPace.text = ""
-                displayCalories.text =""
-
-
+                displayCalories.text = ""
             }
         }
 
-        stopButton.setOnClickListener{
-            if(isRunning && stopButton.text == "Stop") {
+        stopButton.setOnClickListener {
+            if (isRunning && stopButton.text == "Stop") {
+                // Pause the chronometer
                 timeWhenStopped = SystemClock.elapsedRealtime() - chrono.base
                 chrono.stop()
                 isRunning = false
+                gifDrawable.pause()
                 stopButton.text = "Reset"  // Change stop button to "Reset"
                 startButton.text = "Resume"  // Update start button to "Resume"
-                displayResult.text= ""
-                displayDistance.text = ""
-                displayPace.text = ""
-                displayCalories.text =""
-
-
-            }
-            else {
+            } else {
                 // Reset the chronometer
                 chrono.base = SystemClock.elapsedRealtime()
-                timeWhenStopped = 0  // resets time
-                stopButton.text = "Stop"  // reverts stop button to "Stop"
-                startButton.text = "Start"  // reverts start button to "Start"
-                displayResult.text= ""
+                timeWhenStopped = 0
+                gifDrawable.stop()
+                gifDrawable.seekToFrame(0) // Reset to the first frame
+                gifDrawable.pause()
+                stopButton.text = "Stop"  // Revert stop button to "Stop"
+                startButton.text = "Start"  // Revert start button to "Start"
+                displayResult.text = ""
                 displayDistance.text = ""
                 displayPace.text = ""
-                displayCalories.text =""
-
+                displayCalories.text = ""
             }
 
         }
 
         doneButton.setOnClickListener {
             val elapsedTimeInMilliseconds = timeWhenStopped
-            // milliseconds to seconds, but simulating it as minutes for users
-            val elapsedTimeInMinutes= elapsedTimeInMilliseconds / 1000
+            val elapsedTimeInMinutes = elapsedTimeInMilliseconds / 1000
             Toast.makeText(this, "Total Time: $elapsedTimeInMinutes", Toast.LENGTH_SHORT).show()
 
-            // every minute, 160 meters are ran, divided by 16000 for 1 mile
-            // for example, do 25 seconds for 2 miles (on average)
+            // Calculate distance, pace, and calories
             val totalDistance: Double = (elapsedTimeInMinutes * 160.0) / 1600.0
-
-            // formula for pace
-            val totalPace: Double = elapsedTimeInMinutes/totalDistance
-
-            // passing User info to get and save calories, timer in ActivityContents is updated
+            val totalPace: Double = elapsedTimeInMinutes / totalDistance
             activityContents.timer = elapsedTimeInMinutes.toFloat()
-            caloriesBurned = activityContents.trackCalories(user) //uses the specific MET to calculate
+            caloriesBurned = activityContents.trackCalories(user)
 
             displayResult.text = "Total Time: $elapsedTimeInMinutes minutes"
             displayDistance.text = "Total Distance: $totalDistance miles"
@@ -154,11 +146,6 @@ class RunningActivity : AppCompatActivity() {
 
         menuButton.setOnClickListener{
             val intent = Intent(this, ChooseActivity::class.java)
-            if(isGuest){
-                intent.putExtra("isGuest", true)
-            } else {
-                intent.putExtra("userId", userId) // Pass userId with correct key casing
-            }
             startActivity(intent)
         }
     }
