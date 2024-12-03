@@ -42,6 +42,10 @@ class ChooseActivity : AppCompatActivity() {
         // Retrieve userId from Intent
         val userId = intent.getIntExtra("userId", -1)
 
+        if (!isGuest && userId == -1) {
+            finish() // Exit if userId is invalid
+        }
+
 
         // initializing buttons
         val runButton = findViewById<Button>(R.id.runningButton)
