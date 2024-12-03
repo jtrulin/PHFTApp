@@ -1,5 +1,6 @@
 package com.example.phftapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -20,12 +21,19 @@ class Messagetrainer : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         val editTextMessage: EditText = findViewById(R.id.editTextMessage)
         val buttonSend: Button = findViewById(R.id.buttonSend)
+        val backButton: Button = findViewById(R.id.backButton)
 
         // Set up RecyclerView with LayoutManager
         val messageList = mutableListOf<String>()  // Example message list
         val adapter = MessageAdapter(messageList)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
+
+        // Handle the back button click to finish the activity
+        backButton.setOnClickListener {
+            val intent = Intent(this, Trainer::class.java)
+            startActivity(intent)
+        }
 
         // Handling the edge-to-edge effect by applying WindowInsets
         ViewCompat.setOnApplyWindowInsetsListener(recyclerView) { v, insets ->

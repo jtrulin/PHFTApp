@@ -35,6 +35,7 @@ class hiit : AppCompatActivity() {
             Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
             finish() // Exit if no userId is found
         }*/
+        val isGuest = intent.getBooleanExtra("isGuest", false)
 
         val chrono = findViewById<Chronometer>(R.id.chronometer)
         val startButton = findViewById<Button>(R.id.Start)
@@ -148,6 +149,11 @@ class hiit : AppCompatActivity() {
 
         menuButton.setOnClickListener {
             val intent = Intent(this, ChooseActivity::class.java)
+            if(isGuest){
+                intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId with correct key casing
+            }
             startActivity(intent)
         }
     }

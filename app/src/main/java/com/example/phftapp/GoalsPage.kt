@@ -34,8 +34,16 @@ class GoalsPage : AppCompatActivity() {
         val goalListView = findViewById<ListView>(R.id.goalListView)
         val backButton = findViewById<Button>(R.id.backButton)
 
+        //User data
+        val userId = intent.getIntExtra("userId", -1) // Retrieve userId from LoginPage
+        val email = intent.getStringExtra("email") ?: ""
+        val password = intent.getStringExtra("password") ?: ""
+
         backButton.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
+            intent.putExtra("userId", userId) // Pass userId
+            intent.putExtra("email", email) // Pass email
+            intent.putExtra("password", password) // Pass password
             startActivity(intent)
         }
 

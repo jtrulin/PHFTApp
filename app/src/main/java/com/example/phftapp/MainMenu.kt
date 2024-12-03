@@ -91,20 +91,24 @@ class MainMenu : AppCompatActivity() {
 
 
         goalsButton.setOnClickListener(){
-            val intent = Intent(this, GoalsPage::class.java)
             if (isGuest) {
-                intent.putExtra("isGuest", true)
+                Toast.makeText(this, "Guests don't have access! Please Register", Toast.LENGTH_SHORT).show()
             } else {
+                val intent = Intent(this, GoalsPage::class.java)
                 intent.putExtra("userId", userId) // Pass userId
                 intent.putExtra("email", email) // Pass email
                 intent.putExtra("password", password) // Pass password
+                startActivity(intent)
             }
-            startActivity(intent)
         }
 
         socialButton.setOnClickListener(){
             if(isGuest){
                 Toast.makeText(this, "Guests don't have access! Please Register", Toast.LENGTH_SHORT).show()
+            } else{
+                val intent = Intent(this, socialmedia::class.java)
+                intent.putExtra("userId", userId)
+                startActivity(intent)
             }
         }
 
@@ -123,8 +127,6 @@ class MainMenu : AppCompatActivity() {
         paymentValidationButton.setOnClickListener(){
             if(isGuest){
                 Toast.makeText(this, "Please Register First!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, RegisterPage::class.java)
-                startActivity(intent)
             } else{
                 val intent = Intent(this, PaymentValidation::class.java)
                 intent.putExtra("userId", userId)
@@ -135,12 +137,6 @@ class MainMenu : AppCompatActivity() {
 
         logoutButton.setOnClickListener(){
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
-        val socialmediabutton = findViewById<ImageButton>(R.id.socButton)
-
-        socialmediabutton.setOnClickListener(){
-            val intent = Intent(this, socialmedia::class.java)
             startActivity(intent)
         }
 

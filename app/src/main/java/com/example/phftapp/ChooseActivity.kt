@@ -53,6 +53,11 @@ class ChooseActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
+            if(isGuest){
+                intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId with correct key casing
+            }
             startActivity(intent)
         }
 
@@ -60,10 +65,8 @@ class ChooseActivity : AppCompatActivity() {
             if (isGuest) {
                 // If user a guest, show the ad page
                 val intent = Intent(this, AdPage::class.java)
-                intent.putExtra(
-                    "activityType",
-                    activityType
-                ) // ad page goes to the intended activity after pressing continue
+                intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                intent.putExtra("isGuest", true)
                 startActivity(intent)
             } else {
                 val intent = Intent(this, RunningActivity::class.java)
@@ -91,6 +94,7 @@ class ChooseActivity : AppCompatActivity() {
                 activityType = "walking"
                 val intent = Intent(this, AdPage::class.java)
                 intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                intent.putExtra("isGuest", true)
                 startActivity(intent)
             } else {
                 // else, proceed to WalkingActivity
@@ -111,6 +115,7 @@ class ChooseActivity : AppCompatActivity() {
                 activityType = "cycling"
                 val intent = Intent(this, AdPage::class.java)
                 intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                intent.putExtra("isGuest", true)
                 startActivity(intent)
             } else {
                 // else, proceed to WalkingActivity
@@ -132,6 +137,7 @@ class ChooseActivity : AppCompatActivity() {
 
                 val intent = Intent(this, AdPage::class.java)
                 intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                intent.putExtra("isGuest", true)
                 startActivity(intent)
             } else {
                 // else, proceed to WeightLifting
@@ -152,6 +158,7 @@ class ChooseActivity : AppCompatActivity() {
                 activityType = "yoga"
                 val intent = Intent(this, AdPage::class.java)
                 intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                intent.putExtra("isGuest", true)
                 startActivity(intent)
             } else {
                 // else, proceed to WalkingActivity
@@ -171,6 +178,7 @@ class ChooseActivity : AppCompatActivity() {
                 activityType = "hiit"
                 val intent = Intent(this, AdPage::class.java)
                 intent.putExtra("activityType", activityType) // ad page goes to the intended activity after pressing continue
+                intent.putExtra("isGuest", true)
                 startActivity(intent)
             } else {
                 // else, proceed to WalkingActivity

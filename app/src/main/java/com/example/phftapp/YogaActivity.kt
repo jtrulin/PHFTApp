@@ -1,10 +1,13 @@
 package com.example.phftapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.Chronometer
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -23,6 +26,7 @@ class YogaActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val isGuest = intent.getBooleanExtra("isGuest", false)
 
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
@@ -35,6 +39,11 @@ class YogaActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             val intent = Intent(this, ChooseActivity::class.java)
+            if(isGuest){
+                intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId with correct key casing
+            }
             startActivity(intent)
         }
 

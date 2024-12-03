@@ -19,9 +19,11 @@ class socialmedia : AppCompatActivity() {
             insets
         }
         val backButton = findViewById<Button>(R.id.backButton)
+        val userId = intent.getIntExtra("userId", -1)
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
+            intent.putExtra("userId", userId)
             startActivity(intent)
         }
     }

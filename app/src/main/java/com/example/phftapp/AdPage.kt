@@ -24,6 +24,14 @@ class AdPage : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        //This is just to make the back button work, lol
+        val userId = intent.getIntExtra("userId", -1)
+        /*
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if no userId is found
+        }*/
+        val isGuest = intent.getBooleanExtra("isGuest", false)
 
         // initializing ad on page
         MobileAds.initialize(this@AdPage)
@@ -38,21 +46,51 @@ class AdPage : AppCompatActivity() {
         cont.setOnClickListener{
             if(activityType == "running"){
                 val intent = Intent(this, RunningActivity::class.java)
+                if(isGuest){
+                    intent.putExtra("isGuest", true)
+                } else {
+                    intent.putExtra("userId", userId) // Pass userId with correct key casing
+                }
                 startActivity(intent)
             } else if(activityType == "weightlifting"){
                 val intent = Intent(this, LiftingActivity::class.java)
+                if(isGuest){
+                    intent.putExtra("isGuest", true)
+                } else {
+                    intent.putExtra("userId", userId) // Pass userId with correct key casing
+                }
                 startActivity(intent)
             } else if(activityType == "walking"){
                 val intent = Intent(this, WalkingActivity::class.java)
+                if(isGuest){
+                    intent.putExtra("isGuest", true)
+                } else {
+                    intent.putExtra("userId", userId) // Pass userId with correct key casing
+                }
                 startActivity(intent)
             } else if(activityType == "cycling"){
                 val intent = Intent(this, CyclingActivity::class.java)
+                if(isGuest){
+                    intent.putExtra("isGuest", true)
+                } else {
+                    intent.putExtra("userId", userId) // Pass userId with correct key casing
+                }
                 startActivity(intent)
             } else if (activityType == "yoga"){
                 val intent = Intent(this, YogaActivity::class.java)
+                if(isGuest){
+                    intent.putExtra("isGuest", true)
+                } else {
+                    intent.putExtra("userId", userId) // Pass userId with correct key casing
+                }
                 startActivity(intent)
             } else if (activityType == "hiit"){
                 val intent = Intent(this, hiit::class.java)
+                if(isGuest){
+                    intent.putExtra("isGuest", true)
+                } else {
+                    intent.putExtra("userId", userId) // Pass userId with correct key casing
+                }
                 startActivity(intent)
             }
         }
