@@ -31,11 +31,6 @@ class RunningActivity : AppCompatActivity() {
 
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
-        /*
-        if (userId == -1) {
-            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
-            //finish() // Exit if no userId is found
-        }*/
         val isGuest = intent.getBooleanExtra("isGuest", false)
 
         // Buttons
@@ -147,13 +142,14 @@ class RunningActivity : AppCompatActivity() {
 
         menuButton.setOnClickListener{
             val intent = Intent(this, ChooseActivity::class.java)
-            val userId = intent.getIntExtra("userId", -1) // Retrieve the userId passed to RunningActivity
-            if (userId != -1) {
-                intent.putExtra("userId", userId) // Pass userId back to ChooseActivity
+            //val userId = intent.getIntExtra("userId", -1) // Retrieve the userId passed to RunningActivity
+            if (isGuest) {
+                intent.putExtra("isGuest", true)
             } else {
-                intent.putExtra("isGuest", true) // If no userId, mark as a guest
+                intent.putExtra("userId", userId) // Pass userId back to ChooseActivity
             }
             startActivity(intent)
+            finish() // Close RunningActivity
         }
     }
 }

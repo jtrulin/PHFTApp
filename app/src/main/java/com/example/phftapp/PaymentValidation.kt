@@ -27,13 +27,6 @@ class PaymentValidation : AppCompatActivity() {
             insets
         }
 
-        val backToMenuButton = findViewById<Button>(R.id.backToMenuButton)
-        backToMenuButton.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
-            startActivity(intent)
-            finish()
-        }
-
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
         if (userId == -1) {
@@ -50,7 +43,10 @@ class PaymentValidation : AppCompatActivity() {
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
+            intent.putExtra("userId", userId) // Pass userId for logged-in users
+
             startActivity(intent)
+            finish() // Close the socialmedia activity
         }
 
         payButton.setOnClickListener {

@@ -18,13 +18,19 @@ class socialmedia : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val backButton = findViewById<Button>(R.id.backButton)
-        val userId = intent.getIntExtra("userId", -1)
+        val isGuest = intent.getBooleanExtra("isGuest", false)
+        val userId = intent.getIntExtra("userId", -1) // Default userId
 
+        val backButton = findViewById<Button>(R.id.backButton)
         backButton.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
-            intent.putExtra("userId", userId)
+            if (isGuest) {
+                intent.putExtra("isGuest", true) // Pass isGuest flag
+            } else {
+                intent.putExtra("userId", userId) // Pass userId for logged-in users
+            }
             startActivity(intent)
+            finish() // Close the socialmedia activity
         }
     }
 }

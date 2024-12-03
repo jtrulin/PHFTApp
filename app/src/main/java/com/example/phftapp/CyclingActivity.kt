@@ -26,11 +26,6 @@ class CyclingActivity : AppCompatActivity() {
 
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
-        /*
-        if (userId == -1) {
-            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
-            finish() // Exit if no userId is found
-        }*/
         val isGuest = intent.getBooleanExtra("isGuest", false)
 
         // Buttons and Texts
@@ -85,13 +80,14 @@ class CyclingActivity : AppCompatActivity() {
 
         menuButton.setOnClickListener{
             val intent = Intent(this, ChooseActivity::class.java)
-            if(isGuest){
+            //val userId = intent.getIntExtra("userId", -1) // Retrieve the userId passed to RunningActivity
+            if (isGuest) {
                 intent.putExtra("isGuest", true)
             } else {
-                intent.putExtra("userId", userId) // Pass userId with correct key casing
+                intent.putExtra("userId", userId) // Pass userId back to ChooseActivity
             }
             startActivity(intent)
+            finish() // Close RunningActivity
         }
-
     }
 }

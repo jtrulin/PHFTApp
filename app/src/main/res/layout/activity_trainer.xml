@@ -9,19 +9,18 @@
     android:id="@+id/TrainerID"
     android:padding="16dp">
 
-    <!-- Back Button at the Top Left -->
+    <!-- Horizontal Layout for Trainer Info -->
     <Button
-        android:id="@+id/backToMenuButton"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/cyan"
         android:fontFamily="@font/teko"
         android:text="Back"
-        android:textColor="@color/black"
         android:textSize="21sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="10dp" />
 
-    <!-- Horizontal Layout for Trainer Info -->
     <LinearLayout
         android:layout_width="391dp"
         android:layout_height="197dp"
@@ -86,16 +85,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Message Trainer" />
-        <Button
-            android:id="@+id/backButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back"
-            android:fontFamily="@font/teko"
-            android:textSize="21sp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="10dp" />
+
             <!-- Message Button -->
 
         </LinearLayout>

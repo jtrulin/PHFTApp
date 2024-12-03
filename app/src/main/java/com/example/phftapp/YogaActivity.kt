@@ -27,25 +27,7 @@ class YogaActivity : AppCompatActivity() {
             insets
         }
         val isGuest = intent.getBooleanExtra("isGuest", false)
-
-        // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
-        /*
-        if (userId == -1) {
-            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
-            finish() // Exit if no userId is found
-        }*/
-        val backButton = findViewById<Button>(R.id.backButton)
-
-        backButton.setOnClickListener {
-            val intent = Intent(this, ChooseActivity::class.java)
-            if(isGuest){
-                intent.putExtra("isGuest", true)
-            } else {
-                intent.putExtra("userId", userId) // Pass userId with correct key casing
-            }
-            startActivity(intent)
-        }
 
         // Buttons
         val chrono = findViewById<Chronometer>(R.id.chronometer)
@@ -53,6 +35,7 @@ class YogaActivity : AppCompatActivity() {
         val stopButton = findViewById<Button>(R.id.Stop)
         val doneButton = findViewById<Button>(R.id.Done)
         val progressButton = findViewById<Button>(R.id.chartProgress)
+        val menuButton = findViewById<Button>(R.id.menu)
 
 
         // Text
@@ -113,6 +96,17 @@ class YogaActivity : AppCompatActivity() {
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // No action needed
             }
+        }
+        menuButton.setOnClickListener{
+            val intent = Intent(this, ChooseActivity::class.java)
+            //val userId = intent.getIntExtra("userId", -1) // Retrieve the userId passed to RunningActivity
+            if (isGuest) {
+                intent.putExtra("isGuest", true)
+            } else {
+                intent.putExtra("userId", userId) // Pass userId back to ChooseActivity
+            }
+            startActivity(intent)
+            finish()
         }
     }
 }

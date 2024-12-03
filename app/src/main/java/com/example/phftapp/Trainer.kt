@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class Trainer : AppCompatActivity() {
+
+    private lateinit var databaseHelper: DatabaseHelper
 
     private var totalRatings = 0.0f  // Example initial average rating
     private var ratingCount = 10
@@ -20,6 +23,9 @@ class Trainer : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_trainer)
+
+        databaseHelper = DatabaseHelper(this)
+
 
         // Load ratings from SharedPreferences
         totalRatings = sharedPref.getFloat("totalRatings", 4.5f)
@@ -32,6 +38,12 @@ class Trainer : AppCompatActivity() {
             insets
         }
 
+        val userId = intent.getIntExtra("userId", -1)
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if no userId is found
+        }
+
         val ratingBar = findViewById<RatingBar>(R.id.ratingBar1)
         val overallRatingText = findViewById<TextView>(R.id.overall_rating)
         val messages = findViewById<Button>(R.id.message_button)
@@ -39,7 +51,10 @@ class Trainer : AppCompatActivity() {
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainMenu::class.java)
+            intent.putExtra("userId", userId) // Pass userId for logged-in users
+
             startActivity(intent)
+            finish() // Close the socialmedia activity
         }
 
         // Display initial overall rating
