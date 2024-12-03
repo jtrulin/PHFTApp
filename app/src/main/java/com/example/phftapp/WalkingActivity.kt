@@ -142,8 +142,6 @@ class WalkingActivity : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Failed to save progress.", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this, "User not logged in. Progress not saved.", Toast.LENGTH_SHORT).show()
             }
         }
         
@@ -157,16 +155,14 @@ class WalkingActivity : AppCompatActivity() {
             ).show()
             startActivity(intent)
         }
-        menuButton.setOnClickListener{
+        menuButton.setOnClickListener {
             val intent = Intent(this, ChooseActivity::class.java)
-            //val userId = intent.getIntExtra("userId", -1) // Retrieve the userId passed to RunningActivity
-            if (isGuest) {
-                intent.putExtra("isGuest", true)
-            } else {
-                intent.putExtra("userId", userId) // Pass userId back to ChooseActivity
+            intent.putExtra("isGuest", isGuest) // Pass guest status
+            if (!isGuest && userId != -1) {
+                intent.putExtra("userId", userId) // Pass userId if not a guest
             }
             startActivity(intent)
-            finish() // Close RunningActivity
+            finish() // Close current activity
         }
     }
 }
