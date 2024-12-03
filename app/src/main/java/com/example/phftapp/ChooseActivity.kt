@@ -11,9 +11,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 
 class ChooseActivity : AppCompatActivity() {
+
+    private lateinit var databaseHelper: DatabaseHelper
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_choose)
@@ -23,12 +28,9 @@ class ChooseActivity : AppCompatActivity() {
             insets
         }
 
-        val backToMenuButton = findViewById<Button>(R.id.backToMenuButton)
-        backToMenuButton.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java) // Replace `MainMenuActivity` with the actual main menu activity class name
-            startActivity(intent)
-            finish() // Optional: Closes the current activity
-        }
+        databaseHelper = DatabaseHelper(this)
+
+        //val userInfoTextView = findViewById<TextView>(R.id.tvUserInfo)
 
         val heartbeatIcon = findViewById<ImageView>(R.id.heartbeatIcon)
         val pulseAnimation = AnimationUtils.loadAnimation(this, R.anim.pulse)
@@ -40,12 +42,12 @@ class ChooseActivity : AppCompatActivity() {
         // Retrieve userId from Intent
         val userId = intent.getIntExtra("userId", -1)
 
-        /*
+
         if (userId == -1 && !isGuest) {
             Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
             finish() // Exit if userId is invalid
         }
-        */
+
 
 
         // initializing buttons
