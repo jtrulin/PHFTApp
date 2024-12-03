@@ -27,6 +27,15 @@ class hiit : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        // Retrieve userId passed from MainMenu
+        val userId = intent.getIntExtra("userId", -1)
+        /*
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if no userId is found
+        }*/
+
         val chrono = findViewById<Chronometer>(R.id.chronometer)
         val startButton = findViewById<Button>(R.id.Start)
         val stopButton = findViewById<Button>(R.id.Stop)
@@ -109,6 +118,21 @@ class hiit : AppCompatActivity() {
 
             displayResult.text = "Total Time: $elapsedTimeInMinutes minutes"
             displayCalories.text = "Calories Burned: $caloriesBurned"
+
+            // Add calories burned to the progressReport database
+            val databaseHelper = DatabaseHelper(this)
+            //val userId = intent.getIntExtra("userId", -1) // Ensure userId is passed to this activity
+            if (userId != -1) {
+                val progressReport = ProgressReport(caloriesBurned = caloriesBurned.toDouble(), userId = userId)
+                val insertedId = databaseHelper.insertProgress(progressReport)
+                if (insertedId != -1L) {
+                    Toast.makeText(this, "Progress saved successfully!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Failed to save progress.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "User not logged in. Progress not saved.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         progressButton.setOnClickListener {
