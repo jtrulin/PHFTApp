@@ -48,19 +48,17 @@ class PaymentValidation : AppCompatActivity() {
                 val month = cardMonth.text.toString().toInt()
                 val year = cardYear.text.toString().toInt()
 
-                println("Inserting payment: $cNumber, CVV: $cvv, Month: $month, Year: $year, UserID: $userId")
-
-
                 //val user = User(name, age, id, email) // checking if class is working (it does)
                 val insertedId =
                     databaseHelper.insertCard(Payment(cNumber, cvv, month, year, userId))
 
                 if (insertedId == -1L) {
-                    println("Failed to insert payment.")
                     Toast.makeText(this, "Payment failed to process!", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Payment successfull!", Toast.LENGTH_SHORT).show()
+                    // Redirect back to MainMenu with userId
                     val intent = Intent(this, PaymentSuccess::class.java)
+                    intent.putExtra("userId", userId) // Pass userId
                     startActivity(intent)
                 }
             }
