@@ -31,11 +31,11 @@ class RunningActivity : AppCompatActivity() {
 
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
-        /*
+
         if (userId == -1) {
             Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
             finish() // Exit if no userId is found
-        }*/
+        }
 
         // Buttons
         val chrono = findViewById<Chronometer>(R.id.chronometer)
@@ -126,7 +126,7 @@ class RunningActivity : AppCompatActivity() {
 
             // Add calories burned to the progressReport database
             val databaseHelper = DatabaseHelper(this)
-            //val userId = intent.getIntExtra("userId", -1) // Ensure userId is passed to this activity
+            val userId = intent.getIntExtra("userId", -1) // Ensure userId is passed to this activity
             if (userId != -1) {
                 val progressReport = ProgressReport(caloriesBurned = caloriesBurned.toDouble(), userId = userId)
                 val insertedId = databaseHelper.insertProgress(progressReport)
