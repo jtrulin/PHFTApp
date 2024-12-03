@@ -24,6 +24,14 @@ class CyclingActivity : AppCompatActivity() {
             insets
         }
 
+        // Retrieve userId passed from MainMenu
+        val userId = intent.getIntExtra("userId", -1)
+        /*
+        if (userId == -1) {
+            Toast.makeText(this, "Error: User not logged in.", Toast.LENGTH_SHORT).show()
+            finish() // Exit if no userId is found
+        }*/
+
         // Buttons and Texts
         val distanceInput = findViewById<EditText>(R.id.distanceInput)
         val durationInput = findViewById<EditText>(R.id.durationInput)
@@ -50,6 +58,21 @@ class CyclingActivity : AppCompatActivity() {
             // Display results
             speedOutput.text = "Speed: ${"%.2f".format(speed)} mph"
             caloriesOutput.text = "Calories Burned: ${"%.2f".format(caloriesBurned)}"
+
+            // Add calories burned to the progressReport database
+            val databaseHelper = DatabaseHelper(this)
+            //val userId = intent.getIntExtra("userId", -1) // Ensure userId is passed to this activity
+            if (userId != -1) {
+                val progressReport = ProgressReport(caloriesBurned = caloriesBurned.toDouble(), userId = userId)
+                val insertedId = databaseHelper.insertProgress(progressReport)
+                if (insertedId != -1L) {
+                    Toast.makeText(this, "Progress saved successfully!", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Failed to save progress.", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                Toast.makeText(this, "User not logged in. Progress not saved.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         progressButton.setOnClickListener{
