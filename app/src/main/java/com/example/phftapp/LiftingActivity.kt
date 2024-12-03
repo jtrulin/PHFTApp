@@ -149,16 +149,14 @@ class LiftingActivity : AppCompatActivity() {
             }
         }
 
-        menuButton.setOnClickListener{
+        menuButton.setOnClickListener {
             val intent = Intent(this, ChooseActivity::class.java)
-            //val userId = intent.getIntExtra("userId", -1) // Retrieve the userId passed to RunningActivity
-            if (isGuest) {
-                intent.putExtra("isGuest", true)
-            } else {
-                intent.putExtra("userId", userId) // Pass userId back to ChooseActivity
+            intent.putExtra("isGuest", isGuest) // Pass guest status
+            if (!isGuest && userId != -1) {
+                intent.putExtra("userId", userId) // Pass userId if not a guest
             }
             startActivity(intent)
-            finish()
+            finish() // Close current activity
         }
     }
 }

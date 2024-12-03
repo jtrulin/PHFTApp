@@ -126,8 +126,6 @@ class hiit : AppCompatActivity() {
                 } else {
                     Toast.makeText(this, "Failed to save progress.", Toast.LENGTH_SHORT).show()
                 }
-            } else {
-                Toast.makeText(this, "User not logged in. Progress not saved.", Toast.LENGTH_SHORT).show()
             }
         }
 
