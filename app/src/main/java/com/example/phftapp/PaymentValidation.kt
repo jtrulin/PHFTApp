@@ -27,6 +27,13 @@ class PaymentValidation : AppCompatActivity() {
             insets
         }
 
+        val backToMenuButton = findViewById<Button>(R.id.backToMenuButton)
+        backToMenuButton.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         // Retrieve userId passed from MainMenu
         val userId = intent.getIntExtra("userId", -1)
         if (userId == -1) {
